@@ -8,4 +8,6 @@ public interface UserService {
     List<User> findAll();
 
     User findById(String dni);
+
+    void save(User user);
 }

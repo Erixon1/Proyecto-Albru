@@ -1,5 +1,7 @@
 package org.example.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -25,8 +27,11 @@ public class User {
     private String password;
 
     @OneToOne(mappedBy = "user")
+    @JsonManagedReference
     private Authority authority;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "asesorDni")
     private Set<Contacto> contactos = new LinkedHashSet<>();
 

@@ -32,6 +32,10 @@ public class UserServiceImp implements UserService {
         return temp;
     }
 
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 
 
 }
