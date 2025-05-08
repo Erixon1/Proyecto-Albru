@@ -26,9 +26,8 @@ public class User {
     @Column(name = "password", length = 68)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authority_id", nullable = false)
-    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
     private Authority authority;
 
 
