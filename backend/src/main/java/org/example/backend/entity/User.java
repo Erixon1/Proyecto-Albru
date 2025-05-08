@@ -1,7 +1,7 @@
 package org.example.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -23,12 +23,17 @@ public class User {
     @Column(name = "genero", length = 10)
     private String genero;
 
-    @Column(name = "password", length = 60)
+    @Column(name = "password", length = 68)
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authority_id", nullable = false)
+    @JsonBackReference
     private Authority authority;
+
+
+    @Column(name = "enabled")
+    private Boolean enabled;
 
 
     @JsonIgnore

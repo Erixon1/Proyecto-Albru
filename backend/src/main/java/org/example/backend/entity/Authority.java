@@ -1,38 +1,39 @@
 package org.example.backend.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "authorities", schema = "albru")
 public class Authority {
     @Id
-    @Column(name = "dni", nullable = false, length = 8)
-    private String dni;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni", nullable = false)
-    @JsonBackReference
-    private User user;
+    @OneToMany(mappedBy = "authority")
+    @JsonManagedReference
+    private Set<User> users = new LinkedHashSet<>();
 
     @Column(name = "authority", length = 50)
     private String authority;
 
-    public String getDni() {
-        return dni;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
-    public User getUser() {
-        return user;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+
+    public Set<User> getUsers() {
+        return users;
     }
 
     public String getAuthority() {
@@ -42,5 +43,4 @@ public class Authority {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
-
 }

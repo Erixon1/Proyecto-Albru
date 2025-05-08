@@ -12,16 +12,17 @@ import java.security.SecurityPermission;
 
 @Configuration
 public class SecurityConfiguration {
-
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
         jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "SELECT dni AS username, password, true AS enabled FROM user WHERE dni=?");
+                "SELECT dni AS username, password, enabled FROM user WHERE dni=?");
 
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "SELECT dni, authority FROM authorities WHERE dni=?");
+                "SELECT user.dni AS username, authorities.authority " +
+                        "FROM user INNER JOIN authorities ON user.authority_id = authorities.id " +
+                        "WHERE user.dni = ?");
 
         return jdbcUserDetailsManager;
     }
@@ -30,5 +31,5 @@ public class SecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-    
+
 }

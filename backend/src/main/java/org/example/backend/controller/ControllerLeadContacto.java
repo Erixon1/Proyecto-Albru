@@ -27,6 +27,5 @@ public class ControllerLeadContacto {
 
     @GetMapping("/{lead_id}")
     public LeadContacto getById(@PathVariable Integer lead_id){
-        return leadService.findById(lead_id).get();
-    }
+        return leadService.findById(lead_id).get();}
 }
