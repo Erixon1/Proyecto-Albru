@@ -13,8 +13,6 @@ public class EmpresaPlan {
     @Column(name = "plan_id", nullable = false)
     private Integer id;
 
-    @Column(name = "nombre_empresa", length = 40)
-    private String nombreEmpresa;
 
     @Column(name = "tipo", length = 15)
     private String tipo;
@@ -56,13 +54,6 @@ public class EmpresaPlan {
         this.id = id;
     }
 
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
 
     public String getTipo() {
         return tipo;
