@@ -1,4 +1,76 @@
-# Gestión de Servicios ALBRU
+<h1 align="center"> ALBRU</h1>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/603699dc-eafd-4661-b0d7-e9401b55ac3f" alt="Image" width="400"/>
+</p>
+
+---
+
+# Sobre Nosotros
+ALBRU es una empresa especializada en la gestión comercial B2B, dedicada a conectar empresas de servicios con nuevos clientes potenciales. Nuestra misión
+es brindar un servicio de alta calidad en la captación y gestión de leads, ayudando a las empresas a convertir nuevos contactos en ventas efectivas.
+
+## Visión 
+
+Ser la empresa líder en captación de clientes para empresas de servicios, reconocida por convertir cada contacto en una oportunidad de venta y ofrecer una experiencia excepcional tanto a nuestros socios comerciales como a sus futuros clientes. 
+
+## ⭐ Nuestros Valores
+- **Calidad**: Nos comprometemos a ofrecer un servicio confiable, preciso y profesional en cada etapa del proceso comercial.
+- **Servicio**: Priorizamos la atención personalizada y eficiente, adaptándonos a las necesidades de cada cliente.
+- **Compromiso**: Aseguramos un trabajo constante y orientado a resultados, cumpliendo con los objetivos comerciales establecidos con cada empresa.
+---
+
+## Entorno de Trabajo
+
+**PREVENTA**
+
+Esta fase incluye todas las actividades antes de realizar la venta, como, por ejemplo: 
+
+  -  Promoción del producto o servicio 
+
+  -  Atención a consultas de los clientes 
+
+  -  Envío de cotizaciones o presupuestos 
+
+  -  Seguimiento inicial para captar el interés 
+
+
+**POSTVENTA** 
+
+Después de que el cliente compra, entra esta fase, que busca garantizar la satisfacción: 
+
+- Seguimiento al cliente para saber si quedó satisfecho 
+
+- Atención a reclamos o devoluciones 
+
+- Ofrecimiento de soporte técnico o garantías 
+
+- Fidelización (promociones, descuentos, etc.) 
+
+---
+
+## Mapa de Procesos
+
+- Procesos Antiguo
+
+![Image](https://github.com/user-attachments/assets/499db082-598e-46c9-861c-e7b85a4d647e)
+
+- Proceso a implementar
+
+![Image](https://github.com/user-attachments/assets/55059bde-d970-4da8-aa51-5a438176c5d7)
+![Image](https://github.com/user-attachments/assets/4dbab5ad-e439-45f3-ad31-6d94bc71f481)
+![Image](https://github.com/user-attachments/assets/478d6279-e312-4eee-81a4-3e10f5bc6217)
+
+
+# Diagrama EDT
+![Image](https://github.com/user-attachments/assets/46271967-e792-43ec-aa55-bfc5ef8dd128)
+
+# Diagrama de Base de Datos
+- Diagrama físico
+![Image](https://github.com/user-attachments/assets/c52e929f-d5c2-44e3-a189-d9ef9460c178)
+- Diagrama lógico
+![Image](https://github.com/user-attachments/assets/40e1d2fd-01a0-4761-92b5-8beb6a2fc2a7)
+
+# Gestión de Servicios ALBRU.
 
 `Gestión de Servicios ALBRU` es una aplicación web desarrollada con el objetivo de facilitar la gestión de procesos de venta, postventa y El administrador contará con acceso a paneles de datos que le permitirán visualizar y analizar el rendimiento facilitando la toma de decisiones estratégicas. Este proyecto forma parte del trabajo práctico final de la asignatura **Curso Integrador I** de la **Universidad Tecnológica del Perú**.
 
