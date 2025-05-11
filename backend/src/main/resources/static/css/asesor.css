@@ -1,6 +1,6 @@
 
 html, body {
-    background-color: #1e43b8;
+    background-color: #002960;
     max-width: 100dvw;
 }
 
@@ -10,9 +10,21 @@ html, body {
     box-sizing: border-box;
 }
 
+#dni::-webkit-outer-spin-button,
+#dni::-webkit-inner-spin-button,
+#numberRecord::-webkit-outer-spin-button,
+#numberRecord::-webkit-inner-spin-button,
+#ruc::-webkit-outer-spin-button,
+#ruc::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
 /* --------------------- NAVBAR SECTION --------------------- */
 .navbar {
-    background-color: #1e43b8;
+    background-color: #002960;
     position: sticky !important;
     top: 0;
     z-index: 1550;

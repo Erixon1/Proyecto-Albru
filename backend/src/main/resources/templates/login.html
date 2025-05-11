@@ -12,6 +12,7 @@
 
 <div class="container">
     <div class="form-box login">
+        
         <form th:action="@{/login}" method="post">
             <h1>Login</h1>
             <div class="input-box">
@@ -25,6 +26,10 @@
             <div class="forgot-link">
                 <a href="#" class="forgot-text">Forgot password?</a>
             </div>
+            <div th:if="${param.error}" class="alert alert-danger" style="color: red; text-align: center;">
+            <p>¡Error de autenticación! El Username o la contraseña son incorrectos. Por favor, inténtelo nuevamente.</p>
+            </div>
+            <br>
             <button type="submit" class="btn">Login</button>
         </form>
     </div>
@@ -36,7 +41,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>
