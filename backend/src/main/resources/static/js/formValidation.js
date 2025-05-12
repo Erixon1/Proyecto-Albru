@@ -25,3 +25,25 @@ document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault(); // Evita el envío si el usuario cancela
     }
 });
+document.getElementById('customerName').addEventListener('input', function() {
+    this.value = this.value.toUpperCase();
+});
+document.getElementById('numberRecord').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+document.getElementById('installationCost').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9.]/g, ''); // Permite números y el punto decimal
+    if (parseFloat(this.value) < 0) {
+        this.value = ''; // O puedes mostrar un mensaje de error
+    }
+});
+document.getElementById('dateInstallation').addEventListener('input', function() {
+    const selectedDateTime = new Date(this.value);
+    if (!isNaN(selectedDateTime)) {
+        const formattedDateTime = selectedDateTime.toLocaleString(); // Formato local
+        console.log('Fecha y hora seleccionada:', formattedDateTime);
+        // Aquí podrías actualizar algún otro elemento en tu página para mostrar la vista previa
+    } else {
+        console.log('Fecha y hora inválida');
+    }
+});
