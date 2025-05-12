@@ -32,8 +32,8 @@
                         <div class="profile-pic">
                             <img src="" alt="USER" />
                         </div>
-                        <h2>Patricia Mejia</h2>
-                        <p>Desarrolladora Frontend</p>
+                        <h2 sec:authentication="principal.fullName"></h2>
+                        <p sec:authentication="principal.authorities[0]" class="user-rol" ></p>
                     </div>
 
                     <div class="stats-container">
