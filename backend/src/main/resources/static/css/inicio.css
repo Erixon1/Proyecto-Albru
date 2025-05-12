@@ -131,6 +131,17 @@ body {
     color: #333;
     transition: 0.5s;
 }
+.sidebar ul li a .imgBx {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 55px;
+    height: 65px;
+    font-size: 1.5em;
+    color: #333;
+    transition: 0.5s;
+}
 
 .sidebar ul li a .text {
     position: relative;
@@ -159,6 +170,11 @@ body {
     color: var(--bg);
 }
 
+.sidebar:not(.active) .text {
+    display: none !important;
+}
+
+
 .Menulist {
     flex: 1;
 }
@@ -167,7 +183,6 @@ body {
     margin-top: auto;
     width: 100%;
 }
-
 .imgBx {
     position: relative;
     width: 40px;
@@ -555,6 +570,8 @@ button {
     font-weight: 600;
 }
 
+
+
 /* Responsive */
 @media (max-width: 1200px) {
     .dashboard-container {
@@ -626,3 +643,4 @@ button {
         font-size: 1.2rem;
     }
 }
+

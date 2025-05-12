@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- Fragmento del menú lateral -->
+    <div th:fragment="sidebar" class="sidebar">
+        <ul>
+            <li class="logo" style="--bg: #333">
+                <a href="#">
+                    <div class="icon"></div>
+                    <div class="text">ALBRU</div>
+                </a>
+            </li>
+
+            <div class="Menulist">
+                <li style="--bg: #f44336" id="menu-inicio">
+                    <a th:href="@{/user/}">
+                        <div class="icon"><i class='bx bx-home-alt-2'></i></div>
+                        <div class="text">Inicio</div>
+                    </a>
+                </li>
+                <li style="--bg: #2196f3" id="menu-registro">
+                    <a th:href="@{/user/registro}">
+                        <div class="icon"><i class='bx bx-customize'></i></div>
+                        <div class="text">Registro</div>
+                    </a>
+                </li>
+                <li style="--bg: #0fc70f" id="menu-seguimiento">
+                    <a href="#">
+                        <div class="icon"><i class='bx bxs-map-pin'></i></div>
+                        <div class="text">Seguimiento</div>
+                    </a>
+                </li>
+                <li style="--bg: #ffa117" id="menu-perfil">
+                    <a th:href="@{/user/perfil}">
+                        <div class="icon"><i class='bx bxs-face-mask'></i></div>
+                        <div class="text">Perfil</div>
+                    </a>
+                </li>
+            </div>
+
+            <div class="bottom">
+                <li style="--bg: #d94aae">
+                    <a href="#">
+                        <div class="imgBx">
+                            <img src="/images/logo.png" alt="" />
+                        </div>
+                        <div class="text" sec:authentication="principal.fullName"></div>
+                    </a>
+                </li>
+                <li style="--bg: #db1d1d">
+                    <a th:href="@{/login}">
+                        <div class="icon"><i class="bx bx-log-out"></i></div>
+                        <div class="text">Cerrar sesión</div>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Fragmento del toggle del menú -->
+    <div th:fragment="menuToggle" class="menuToggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>
