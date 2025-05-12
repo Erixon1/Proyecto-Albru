@@ -19,6 +19,18 @@ Ser la empresa líder en captación de clientes para empresas de servicios, reco
 - **Compromiso**: Aseguramos un trabajo constante y orientado a resultados, cumpliendo con los objetivos comerciales establecidos con cada empresa.
 ---
 
+# Colaboradores
+
+Integrantes:
+
+*   [Luis Vergara Castilla](https://github.com/LuisVergaraCastilla) 
+*   [Patria Mejia Poma](https://github.com/patriciavmp) 
+*   [Angel Salazar Aguirre](https://github.com/yagideus)
+*   [Leonardo Flores Barboza](https://github.com/Brunux-hub)
+*   [Erixon Castillo Gabriel](https://github.com/Erixon1)
+
+
+
 ## Entorno de Trabajo
 
 **PREVENTA**
