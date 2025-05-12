@@ -13,6 +13,111 @@
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="/css/inicio.css">
     <link rel="stylesheet" href="/css/form.css">
+    <style>
+        .profile-section {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .right-panel {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .section-title {
+            color: white;
+            margin-bottom: 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .section-title-icon {
+            font-size: 1.5rem;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item i {
+            margin-right: 15px;
+            color: #4CAF50;
+            font-size: 1.4rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .info-content label {
+            font-weight: bold;
+            color: #eee;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .info-content p {
+            margin: 0;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .password-section {
+            margin-top: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .change-password-button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .change-password-button i {
+            font-size: 1rem;
+        }
+
+        .change-password-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +138,7 @@
                             <img src="" alt="USER" />
                         </div>
                         <h2 sec:authentication="principal.fullName"></h2>
-                        <p sec:authentication="principal.authorities[0]" class="user-rol" ></p>
+                        <p sec:authentication="principal.authorities[0]" class="user-rol"></p>
                     </div>
 
                     <div class="stats-container">
@@ -54,14 +159,45 @@
 
                 <!-- Panel derecho -->
                 <div class="right-panel">
-
-
-
-
-
+                    <div class="profile-section-header">
+                        <i class="bx bxs-user-detail section-title-icon"></i>
+                        <h2 class="section-title">Información de la Cuenta</h2>
+                    </div>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <i class="fas fa-user"></i>
+                            <div class="info-content">
+                                <label>Nombre</label>
+                                <p th:text="${#authentication.principal.firstName}">Nombre</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fas fa-user-tag"></i>
+                            <div class="info-content">
+                                <label>Apellido</label>
+                                <p th:text="${#authentication.principal.lastName}">Apellido</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fas fa-briefcase"></i>
+                            <div class="info-content">
+                                <label>Rol</label>
+                                <p sec:authentication="principal.authorities[0]">Rol del Usuario</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="password-section">
+                        <h2 class="section-title">Seguridad</h2>
+                        <div class="button-container"> <button class="change-password-button">
+                                <i class="fas fa-key"></i> Cambiar Contraseña
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     </div>
 
