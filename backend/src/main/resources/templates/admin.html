@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Asesor</title>
+
+    <!-- ICONOS & FUENTES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!-- ICONO Y ESTILOS PERSONALIZADOS -->
+    <link rel="icon" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+    <!-- Menú lateral -->
+    <div th:replace="~{fragments/navbar :: sidebar}"></div>
+
+    <!-- Botón para toggle del menú -->
+    <div th:replace="~{fragments/navbar :: menuToggle}"></div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container">
+        <main class="grid-item content">
+            <div class="main-conteiner">
+                <div class="first-item-main">
+                    <h1 class="title-main">Usuarios</h1>
+                    <div class="btn-content">
+                        <button type="button" class="btn btn-primary btn-create-users" id="openModalBtn">+ Nuevo Usuario</button>
+                    </div>
+                </div>
+                <div class="second-item-main">
+                    <table class="table">
+                        <thead class="table-header">
+                        <tr>
+                            <th class="column-item data-table">ID</th>
+                            <th class="column-item data-table">Nombres</th>
+                            <th class="column-item data-table">Apellidos</th>
+                            <th class="column-item data-table">Correo</th>
+                            <th class="column-item data-table">Tipo de usuario</th>
+                            <th class="column-item data-table">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-body">
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                B222
+                            </td>
+                            <td class="data-table">
+                                Patricia Valeria
+                            </td>
+                            <td da class="data-table">
+                                Mejia Poma
+                            </td>
+                            <td class="data-table">
+                                patricia@gmail.com
+                            </td>
+                            <td class="data-table">
+                                GTR
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit" onclick="openEditModal(1, 'Juan Pérez', 'juan@example.com', 'admin')"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete" onclick="openDeleteModal('Pepito')"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C222
+                            </td>
+                            <td class="data-table">
+                                Erixon
+                            </td>
+                            <td da class="data-table">
+                                Castillo Gabriel
+                            </td>
+                            <td class="data-table">
+                                erixon@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                B333
+                            </td>
+                            <td class="data-table">
+                                Leonardo Bruno
+                            </td>
+                            <td da class="data-table">
+                                Flores Barboza
+                            </td>
+                            <td class="data-table">
+                                floresleonardo@gmail.com
+                            </td>
+                            <td class="data-table">
+                                GTR
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C228
+                            </td>
+                            <td class="data-table">
+                                Abraham Luis
+                            </td>
+                            <td da class="data-table">
+                                Vergara Castilla
+                            </td>
+                            <td class="data-table">
+                                luisvergaracastilla@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C654
+                            </td>
+                            <td class="data-table">
+                                Jesús Andrés
+                            </td>
+                            <td da class="data-table">
+                                Luján Carrión
+                            </td>
+                            <td class="data-table">
+                                sideral@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                B634
+                            </td>
+                            <td class="data-table">
+                                Javier Gerardo
+                            </td>
+                            <td da class="data-table">
+                                Milei
+                            </td>
+                            <td class="data-table">
+                                javiermilei@gmail.com
+                            </td>
+                            <td class="data-table">
+                                GTR
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C754
+                            </td>
+                            <td class="data-table">
+                                Joel
+                            </td>
+                            <td da class="data-table">
+                                Gonzales Flores
+                            </td>
+                            <td class="data-table">
+                                joelgonzales@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                B593
+                            </td>
+                            <td class="data-table">
+                                Nicolas
+                            </td>
+                            <td da class="data-table">
+                                De las Casas
+                            </td>
+                            <td class="data-table">
+                                nicolas@gmail.com
+                            </td>
+                            <td class="data-table">
+                                GTR
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C222
+                            </td>
+                            <td class="data-table">
+                                Abraham Luis
+                            </td>
+                            <td da class="data-table">
+                                Vergara Castilla
+                            </td>
+                            <td class="data-table">
+                                luisvergaracastilla@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C222
+                            </td>
+                            <td class="data-table">
+                                Abraham Luis
+                            </td>
+                            <td da class="data-table">
+                                Vergara Castilla
+                            </td>
+                            <td class="data-table">
+                                luisvergaracastilla@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C222
+                            </td>
+                            <td class="data-table">
+                                Abraham Luis
+                            </td>
+                            <td da class="data-table">
+                                Vergara Castilla
+                            </td>
+                            <td class="data-table">
+                                luisvergaracastilla@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID" class="data-table">
+                                C222
+                            </td>
+                            <td class="data-table">
+                                Abraham Luis
+                            </td>
+                            <td da class="data-table">
+                                Vergara Castilla
+                            </td>
+                            <td class="data-table">
+                                luisvergaracastilla@gmail.com
+                            </td>
+                            <td class="data-table">
+                                Asesor
+                            </td>
+                            <td  class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
+                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- MODAL CREATE USERS -->
+    <div class="custom-modal" id="customModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h2 class="modal-title">Crear nuevo usuario</h2>
+            <form class="form-modal" id="create-user-form" th:action="@{/user/admin}" th:object="${usuario}" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" th:field="*{nombres}" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Apellido:</label>
+                    <input type="text" id="last-name" name="last_name" th:field="*{apellidos}" required>
+                </div>
+                <div class="form-group">
+                    <label for="dni">Dni:</label>
+                    <input type="text" id="dni" name="dni" th:field="*{dni}" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <select id="gender" name="gender" class="modal-select" th:field="*{genero}" required>
+                        <option value="" disabled selected>Seleccione un género</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" th:field="*{password}" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-type">Tipo de usuario:</label>
+                    <select id="user-type" name="authority.id" class="modal-select" th:field="*{authority}">
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <option th:each="authority : ${listaAuthorities}"
+                                th:value="${authority.id}"
+                                th:text="${authority.authority}">
+                        </option>
+                    </select>
+
+                </div>
+                <div class="button-container">
+                    <div class="form-group form-button">
+                        <button type="submit" class="btn-submit">Registrar nuevo usuario</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- MODAL DELETE -->
+    <div id="modal-delete-user" class="modal-overlay-delete">
+        <div class="modal-content-delete">
+            <form id="delete-user-form">
+                <h3>¿Estás seguro de que deseas eliminar a <span id="delete-user-name">este usuario</span>?</h3>
+                <input type="hidden" id="delete-user-id" name="userId">
+                <div class="modal-buttons-delete">
+                    <button type="button" class="btn-cancel-delete" onclick="closeDeleteModal()">Cancelar</button>
+                    <button type="submit" class="btn-confirm-delete">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- MODAL EDIT USERS -->
+    <div id="modal-edit-user" class="modal-overlay-edit">
+        <div class="modal-content-edit">
+            <h3>Editar Usuario</h3>
+            <form id="edit-user-form">
+                <input type="hidden" id="edit-user-id" name="user_id">
+
+                <div class="form-group">
+                    <label for="edit-user-name">Nombre:</label>
+                    <input type="text" id="edit-user-name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-user-email">Correo:</label>
+                    <input type="email" id="edit-user-email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-user-role">Rol:</label>
+                    <select id="edit-user-role" name="role">
+                        <option value="admin">Administrador</option>
+                        <option value="asesor">Asesor</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                </div>
+
+                <div class="modal-buttons-edit">
+                    <button type="button" class="btn-cancel-edit" onclick="closeEditModal()">Cancelar</button>
+                    <button type="submit" class="btn-confirm-edit">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/admin.js"></script>
+<script src="/js/asistenciaYsidebar.js"></script>
+
+</body>
+
+</html>

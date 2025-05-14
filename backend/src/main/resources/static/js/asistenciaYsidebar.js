@@ -208,6 +208,7 @@ function detectActiveMenu() {
         '/user/registro': 'menu-registro',
         '/user/seguimiento': 'menu-seguimiento',
         '/user/perfil': 'menu-perfil',
+        '/user/admin': 'menu-crear-usuario',
         '/login': null // Limpiar al cerrar sesión
     };
 
@@ -223,6 +224,8 @@ function detectActiveMenu() {
         setActiveMenu('menu-seguimiento');
     } else if (path.startsWith('/user/perfil')) {
         setActiveMenu('menu-perfil');
+    } else if (path.startsWith('/user/admin')) {
+        setActiveMenu('menu-crear-usuario');
     } else {
         setActiveMenu('menu-inicio');
     }

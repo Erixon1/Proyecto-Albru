@@ -21,4 +21,15 @@ public class Authority {
         return authority;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 }
