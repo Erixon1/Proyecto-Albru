@@ -24,7 +24,7 @@ Ser la empresa líder en captación de clientes para empresas de servicios, reco
 Integrantes:
 
 *   [Luis Vergara Castilla](https://github.com/LuisVergaraCastilla) 
-*   [Patria Mejia Poma](https://github.com/patriciavmp) 
+*   [Patricia Mejia Poma](https://github.com/patriciavmp) 
 *   [Angel Salazar Aguirre](https://github.com/yagideus)
 *   [Leonardo Flores Barboza](https://github.com/Brunux-hub)
 *   [Erixon Castillo Gabriel](https://github.com/Erixon1)
@@ -114,8 +114,8 @@ La aplicación contempla los siguientes tipos de usuarios, cada uno con permisos
 El proyecto fue desarrollado utilizando tecnologías modernas del entorno web y backend:
 
 - **Frontend:**
-  - React
   - Bootstrap 5
+  - Boxicons
 - **Backend:**
   - Java
   - Spring Framework
@@ -147,20 +147,79 @@ Lint-Staged, Commitlint y otros paquetes de desarrollo.
 ### 3.📄 Estructura General del Proyecto
 
 ```plaintext
-proyecto-Albru/
-├── .husky/                     # Configuración de Husky para hooks de Git
-├── node_modules/               # Dependencias del proyecto
-├── public/                     # Archivos públicos (favicon, index.html, etc.)
-├── src/                        # Código fuente de la aplicación (componentes, servicios, rutas)
-│
-├── .babelrc                    # Configuración de Babel
-├── .eslintrc.json              # Configuración de ESLint para verificación de código
-├── .gitignore                  # Archivos y carpetas que Git debe ignorar
-├── .prettierrc                 # Reglas de formato con Prettier
-├── commitlint.config.js        # Reglas de convenciones para mensajes de commit
-├── package.json                # Información del proyecto y scripts de npm
-├── package-lock.json           # Registro exacto de dependencias
-└── README.md                   # Documentación del proyecto
+PROYECTO-ALBRU/
+├── .husky/                                      # Configuración de Husky para hooks de Git
+├── .mvn/                                        # Archivos relacionados con Maven
+├── .vscode/                                      # Configuración específica de Visual Studio Code
+├── backend/                                     # Contiene el código del backend de la aplicación
+│   ├── mvnw                                     # Script ejecutable de Maven wrapper para Unix
+│   ├── mvnw.cmd                                 # Script ejecutable de Maven wrapper para Windows
+│   ├── pom.xml                                  # Archivo de configuración del proyecto Maven
+│   └── src/
+│       └── main/
+│           ├── java/                              # Código fuente en Java
+│           │   └── org/
+│           │       └── example/
+│           │           └── backend/                 # Paquete principal del backend
+│           │               ├── controller/          # Contiene los controladores REST (manejan las peticiones HTTP)
+│           │               │   ├── ControllerContacto.java
+│           │               │   ├── ControllerLeadContacto.java
+│           │               │   ├── ControllerUser.java
+│           │               │   ├── ControllerViewLogin.java
+│           │               │   └── ControllerViewUser.java
+│           │               ├── entity/              # Contiene las clases que representan las tablas de la base de datos (modelos)
+│           │               │   ├── Authority.java
+│           │               │   ├── Contacto.java
+│           │               │   ├── ContactoLocation.java
+│           │               │   ├── Empresa.java
+│           │               │   ├── EmpresaPlan.java
+│           │               │   ├── LeadContacto.java
+│           │               │   ├── Location.java
+│           │               │   └── User.java
+│           │               ├── repository/          # Contiene las interfaces para acceder a los datos (interactúan con la base de datos)
+│           │               │   ├── AuthorityRepository.java
+│           │               │   ├── ContactoRepository.java
+│           │               │   ├── LeadRepository.java
+│           │               │   └── UserRepository.java
+│           │               ├── security/              # Contiene la configuración y clases relacionadas con la seguridad de la aplicación
+│           │               │   ├── CustomUserDetails.java
+│           │               │   ├── CustomUserDetailsService.java
+│           │               │   └── SecurityConfiguration.java
+│           │               └── service/             # Contiene la lógica de negocio de la aplicación
+│           │                   ├── AuthorityService.java
+│           │                   ├── ContactoService.java
+│           │                   ├── ContactoServiceImpl.java
+│           │                   ├── LeadContactoImpl.java
+│           │                   ├── LeadService.java
+│           │                   ├── UserService.java
+│           │                   └── UserServiceImpl.java
+│           └── resources/                         # Contiene los recursos de la aplicación
+│               └── static/                      # Contiene los archivos estáticos (se sirven directamente al cliente)
+│                   ├── css/                     # Hojas de estilo CSS para la presentación de la interfaz de usuario
+│                   │   ├── admin.css
+│                   │   ├── form.css
+│                   │   ├── inicio.css
+│                   │   └── styles.css
+│                   ├── images/                  # Imágenes utilizadas en la aplicación
+│                   │   ├── foto-perfil.png.jpg
+│                   │   ├── logo-letra-azul.png
+│                   │   ├── logo-small.png
+│                   │   ├── logo.png
+│                   │   └── undraw_login.svg
+│                   ├── js/                      # Archivos JavaScript para la interactividad del lado del cliente
+│                   │   ├── admin.js
+│                   │   ├── asistenciaYsidebar.js
+│                   │   ├── formValidation.js
+│                   │   └── horaActual.js
+│                   └── templates/                 # Plantillas HTML para la generación dinámica de la interfaz de usuario
+│                       ├── fragments/
+│                       │   └── navbar.html
+│                       ├── admin.html
+│                       ├── inicio.html
+│                       ├── login.html
+│                       ├── perfil.html
+│                       └── registro.html
+└── README.md                                     # Documentación del proyecto
 ```
 
 ## Commitlint
