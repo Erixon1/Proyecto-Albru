@@ -30,6 +30,13 @@ public class User {
     @JoinColumn(name = "authority_id")
     private Authority authority;
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     @Column(name = "enabled")
     private Boolean enabled;
