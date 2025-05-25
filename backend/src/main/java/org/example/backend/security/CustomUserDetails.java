@@ -1,78 +1,75 @@
 package org.example.backend.security;
 
+import org.example.backend.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
 
 public class CustomUserDetails implements UserDetails {
 
-    private String username;
-    private String password;
-    private boolean enabled;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final User usuario;
 
-    private String fullName;
-    private String firstName;
-    private String lastName;
-
-    public CustomUserDetails(String username, String password, boolean enabled,
-                             Collection<? extends GrantedAuthority> authorities,
-                             String fullName) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.authorities = authorities;
-        this.fullName = fullName;        
-        String[] parts = fullName.split(" ", 2);
-        this.firstName = parts[0];
-        this.lastName = parts.length > 1 ? parts[1] : "";
+    public CustomUserDetails(User usuario) {
+        this.usuario = usuario;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return usuario.getNombres();
     }
 
     public String getLastName() {
-        return lastName;
+        return usuario.getApellidos();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return List.of((GrantedAuthority) usuario.getAuthority());
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return usuario.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return usuario.getDni();
+    }
+
+    public String getRoleName(){
+        return usuario.getAuthority().getAuthority();
+    }
+
+    public String getFullName(){
+        return getName()+ " " + getLastName();
+    }
+
+    public String getGenero(){
+        return usuario.getGenero();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return UserDetails.super.isAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return UserDetails.super.isAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return UserDetails.super.isCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return UserDetails.super.isEnabled();
     }
 }

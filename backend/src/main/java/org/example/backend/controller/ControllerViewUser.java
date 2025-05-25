@@ -36,6 +36,7 @@ public class ControllerViewUser {
 
     @GetMapping("/admin")
     public String registerForm(Model model){
+        model.addAttribute("listaUsuarios", userServiceImp.findAll());
         model.addAttribute("usuario", new User());
         model.addAttribute("listaAuthorities", authorityRepository.findAll());
         return "admin";
