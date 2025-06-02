@@ -1,5 +1,6 @@
 package org.example.backend.controller;
 
+
 import org.example.backend.dto.UserDto;
 import org.example.backend.entity.User;
 import org.example.backend.repository.AuthorityRepository;
@@ -37,6 +38,7 @@ public class ControllerViewUser {
 
     @GetMapping("/admin")
     public String registerForm(Model model){
+
         model.addAttribute("listaUsuarios", userServiceImp.findAll());
         model.addAttribute("usuario", new UserDto());
         model.addAttribute("listaAuthorities", authorityRepository.findAll());

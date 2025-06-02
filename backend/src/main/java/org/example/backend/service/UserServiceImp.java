@@ -1,5 +1,6 @@
 package org.example.backend.service;
 
+
 import org.example.backend.dto.UserDto;
 import org.example.backend.entity.Authority;
 import org.example.backend.entity.User;
@@ -46,6 +47,7 @@ public class UserServiceImp implements UserService {
 
 
     @Override
+
     public void save(UserDto userDto) {
         User user = userMapper.toEntity(userDto);
         Optional<Authority> authority = authorityRepository.findById(userDto.getAuthorityId());
