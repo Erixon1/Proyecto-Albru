@@ -1,5 +1,6 @@
 package org.example.backend.controller;
 
+import org.example.backend.dto.UserDto;
 import org.example.backend.entity.User;
 import org.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,8 @@ public class ControllerUser {
 
 
     @GetMapping("/all")
-    public List<User> findAll(){
+    public List<UserDto> findAll(){
         return userService.findAll();
     }
 
-
-    @GetMapping(path = "/{dni}")
-    public User finById(@PathVariable String dni){
-        return userService.findById(dni);
-    }
 }
