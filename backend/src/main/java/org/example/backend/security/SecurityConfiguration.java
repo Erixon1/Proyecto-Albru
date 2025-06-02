@@ -12,6 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
+
     @Bean
     public CustomUserDetailsService customUserDetailsService(){
         return new CustomUserDetailsService();
@@ -45,7 +46,7 @@ public class SecurityConfiguration {
 
 
     @Bean
-public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
     return new CustomUserDetailsService();
 }
 

@@ -1,7 +1,9 @@
 package org.example.backend.service;
 
+import org.example.backend.dto.UserDto;
 import org.example.backend.entity.Authority;
 import org.example.backend.entity.User;
+import org.example.backend.mapper.UserMapper;
 import org.example.backend.repository.AuthorityRepository;
 import org.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +18,37 @@ public class UserServiceImp implements UserService {
     private final PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository){
+    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, UserMapper userMapper){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserDto> findAll() {
+        return userRepository.findAll().stream().map(x->userMapper.toDto(x)).toList();
     }
 
     @Override
-    public User findById(String dni) {
+    public UserDto findById(String dni) {
         Optional<User> result = userRepository.findById(dni);
         User temp = null;
         if(result.isPresent()){
             temp = result.get();
         }
-        return temp;
+        return userMapper.toDto(temp);
     }
 
+
+
     @Override
-    public void save(User user) {
-        Optional<Authority> authority = authorityRepository.findById(user.getAuthority().getId());
+    public void save(UserDto userDto) {
+        User user = userMapper.toEntity(userDto);
+        Optional<Authority> authority = authorityRepository.findById(userDto.getAuthorityId());
         user.setAuthority(authority.get());
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

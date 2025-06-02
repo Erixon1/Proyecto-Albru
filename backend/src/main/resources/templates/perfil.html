@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -138,7 +138,7 @@
                             <img src="" alt="USER" />
                         </div>
                         <h2 sec:authentication="principal.fullName"></h2>
-                        <p sec:authentication="principal.authorities[0]" class="user-rol"></p>
+                        <p th:text="${#authentication.principal.getRoleName()}" class="user-rol"></p>
                     </div>
 
                     <div class="stats-container">
@@ -168,7 +168,7 @@
                             <i class="fas fa-user"></i>
                             <div class="info-content">
                                 <label>Nombre</label>
-                                <p th:text="${#authentication.principal.firstName}">Nombre</p>
+                                <p th:text="${#authentication.principal.name}">Nombre</p>
                             </div>
                         </li>
                         <li class="info-item">
@@ -182,7 +182,7 @@
                             <i class="fas fa-briefcase"></i>
                             <div class="info-content">
                                 <label>Rol</label>
-                                <p sec:authentication="principal.authorities[0]">Rol del Usuario</p>
+                                <p th:text="${#authentication.principal.getRoleName()}">Rol</p>
                             </div>
                         </li>
                     </ul>
@@ -200,8 +200,6 @@
     </div>
     </div>
     </div>
-
-
     <script src="/js/asistenciaYsidebar.js"></script>
 </body>
 

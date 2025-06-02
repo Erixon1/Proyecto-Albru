@@ -50,6 +50,10 @@ public class User {
         return contactos;
     }
 
+    public String getRoleName() {
+        return this.authority.getAuthority();
+    }
+
     public void setContactos(Set<Contacto> contactos) {
         this.contactos = contactos;
     }

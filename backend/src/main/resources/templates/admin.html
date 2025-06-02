@@ -45,6 +45,7 @@
                             <th class="column-item data-table">DNI</th>
                             <th class="column-item data-table">Nombres</th>
                             <th class="column-item data-table">Apellidos</th>
+                            <th class="column-item data-table">Rol</th>
                             <th class="column-item data-table">Acciones</th>
                         </tr>
                         </thead>
@@ -53,6 +54,7 @@
                             <td th:text="${usuario.dni}"></td>
                             <td th:text="${usuario.nombres}"></td>
                             <td th:text="${usuario.apellidos}"></td>
+                            <td th:text="${usuario.getRoleName()}"></td>
                             <td  class="data-table">
                                 <div class="buttons-container">
                                     <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
@@ -100,7 +102,7 @@
                 </div>
                 <div class="form-group">
                     <label for="user-type">Tipo de usuario:</label>
-                    <select id="user-type" name="authority.id" class="modal-select" th:field="*{authority}">
+                    <select id="user-type" th:field="*{authorityId}" required>
                         <option value="" disabled selected>Seleccione un rol</option>
                         <option th:each="authority : ${listaAuthorities}"
                                 th:value="${authority.id}"
