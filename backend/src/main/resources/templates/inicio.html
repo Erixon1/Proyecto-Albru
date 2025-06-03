@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -104,7 +104,7 @@
                             <img src="" alt="USER" />
                         </div>
                         <h2 sec:authentication="principal.fullName"></h2>
-                        <p sec:authentication="principal.authorities[0]" class="user-rol" ></p>
+                        <p sec:authentication="principal.roleName" class="user-rol" ></p>
                     </div>
 
                     <div class="time-section">

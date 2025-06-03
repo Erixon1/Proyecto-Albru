@@ -1,5 +1,7 @@
 package org.example.backend.controller;
 
+
+import org.example.backend.dto.UserDto;
 import org.example.backend.entity.User;
 import org.example.backend.repository.AuthorityRepository;
 import org.example.backend.service.UserService;
@@ -46,14 +48,16 @@ public class ControllerViewUser {
 
     @GetMapping("/admin")
     public String registerForm(Model model){
-        model.addAttribute("usuario", new User());
+
+        model.addAttribute("listaUsuarios", userServiceImp.findAll());
+        model.addAttribute("usuario", new UserDto());
         model.addAttribute("listaAuthorities", authorityRepository.findAll());
         return "admin";
     }
 
     @PostMapping("/admin")
-    public String register(@ModelAttribute User usuario){
-        userServiceImp.save(usuario);
+    public String register(@ModelAttribute UserDto userDto){
+        userServiceImp.save(userDto);
         return "redirect:/user/admin?success";
     }
 
