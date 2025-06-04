@@ -11,4 +11,6 @@ public interface UserService {
     UserDto findById(String dni);
 
     void save(UserDto user);
+
+    void deleteByDni(String dni);
 }

@@ -32,6 +32,7 @@ public class SecurityConfiguration {
                 authorizeHttpRequests(
                 auth -> auth
                         .requestMatchers("/css/**", "/images/**", "/").permitAll()
+                        .requestMatchers("/user/delete/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
         )
         .formLogin(form -> form
@@ -40,7 +41,7 @@ public class SecurityConfiguration {
                         .defaultSuccessUrl("/user/", true)
                         .failureUrl("/login?error=true")
         )
-        .exceptionHandling(handling -> handling.accessDeniedPage("/access-denied"));
+        .exceptionHandling(handling -> handling.accessDeniedPage("/user/access-denied"));
         return http.build();
     }
 

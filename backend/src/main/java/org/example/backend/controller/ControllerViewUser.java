@@ -51,4 +51,16 @@ public class ControllerViewUser {
         return "redirect:/user/admin?success";
     }
 
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String dni) {
+        userServiceImp.deleteByDni(dni);
+        return "redirect:/user/admin?deleted=success";
+    }
+
+
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
+    }
+
 }

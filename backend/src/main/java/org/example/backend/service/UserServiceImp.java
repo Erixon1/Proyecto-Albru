@@ -57,5 +57,10 @@ public class UserServiceImp implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void deleteByDni(String dni) {
+        userRepository.deleteById(dni);
+    }
+
 
 }

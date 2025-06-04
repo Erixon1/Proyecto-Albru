@@ -59,8 +59,17 @@
                             <td th:text="${usuario.getRoleName()}"></td>
                             <td  class="data-table">
                                 <div class="buttons-container">
-                                    <button class="btn-actions btn-edit"><i class="bi bi-pencil-square"></i> Editar</button>
-                                    <button class="btn-actions btn-delete"><i class="bi bi-trash"></i> Eliminar</button>
+                                    <button class="btn-actions btn-edit"
+                                            th:data-user-dni="${usuario.dni}"
+                                            onclick="openEditModal(this.getAttribute('data-user-dni'))">
+                                        <i class="bi bi-pencil-square"></i> Editar
+                                    </button>
+                                    <button class="btn-actions btn-delete"
+                                            th:data-user-id="${usuario.dni}"
+                                            th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
+                                            onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -122,12 +131,11 @@
             </form>
         </div>
     </div>
-    <!-- MODAL DELETE -->
+    <!-- MODAL DELETE  -->
     <div id="modal-delete-user" class="modal-overlay-delete">
         <div class="modal-content-delete">
-            <form id="delete-user-form">
-                <h3>¿Estás seguro de que deseas eliminar a <span id="delete-user-name">este usuario</span>?</h3>
-                <input type="hidden" id="delete-user-id" name="userId">
+            <h3>¿Estás seguro de que deseas eliminar a <span id="delete-user-name"></span>?</h3>
+            <form id="delete-form" method="post" th:action="@{/user/delete/__DNI__}">
                 <div class="modal-buttons-delete">
                     <button type="button" class="btn-cancel-delete" onclick="closeDeleteModal()">Cancelar</button>
                     <button type="submit" class="btn-confirm-delete">Eliminar</button>
@@ -135,6 +143,9 @@
             </form>
         </div>
     </div>
+
+
+
     <!-- MODAL EDIT USERS -->
     <div id="modal-edit-user" class="modal-overlay-edit">
         <div class="modal-content-edit">
@@ -168,6 +179,8 @@
             </form>
         </div>
     </div>
+</div>
+
 </div>
 
 <script src="/js/admin.js"></script>
