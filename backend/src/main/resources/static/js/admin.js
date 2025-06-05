@@ -1,4 +1,3 @@
-
 // ===== MODAL CREATE USER =====
 const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -17,9 +16,8 @@ modalOverlay.addEventListener('click', () => {
     customModal.style.display = 'none';
 });
 
-// No necesitamos manejar el envío del formulario con JavaScript
-// Spring Boot se encarga del formulario automáticamente
-// El formulario tiene: th:action="@{/user/admin}" method="POST"
+// Spring Boot maneja el envío del formulario de creación automáticamente
+
 
 // ===== MODAL DELETE USER =====
 function openDeleteModal(dni, nombreCompleto) {
@@ -39,27 +37,29 @@ function closeDeleteModal() {
 }
 
 
-// Spring Boot maneja automáticamente el formulario de eliminación
-// No necesitamos JavaScript para esto
+// ===== MODAL EDIT USER =====
+function openEditModal(button) {
+    document.getElementById('editMode').value = 'true';
+    document.getElementById('modalTitle').textContent = 'Editar usuario';
+    document.getElementById('dni').value = button.getAttribute('data-user-dni');
+    document.getElementById('dni').readOnly = true; // Evitar modificar DNI
+    document.getElementById('name').value = button.getAttribute('data-user-nombres');
+    document.getElementById('last-name').value = button.getAttribute('data-user-apellidos');
+    document.getElementById('gender').value = button.getAttribute('data-user-genero');
+    document.getElementById('user-type').value = button.getAttribute('data-user-role-id');
+    document.getElementById('password').closest('.form-group').style.display = 'none';
+    document.getElementById('submitButton').textContent = 'Guardar cambios';
+    document.getElementById('create-user-form').setAttribute('action', '/user/update');
+    document.getElementById('customModal').style.display = 'block';
+}
 
 
 function closeEditModal() {
-    document.getElementById('modal-edit-user').style.display = 'none';
+    document.getElementById("modal-edit-user").style.display = "none";
 }
 
-// Manejar envío del formulario de edición
-document.getElementById('edit-user-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+// Spring Boot maneja el envío del formulario de edición automáticamente
 
-    const id = document.getElementById('edit-user-id').value;
-    const name = document.getElementById('edit-user-name').value;
-    const email = document.getElementById('edit-user-email').value;
-    const role = document.getElementById('edit-user-role').value;
-
-    console.log("Datos editados:", { id, name, email, role });
-
-    closeEditModal();
-});
 
 // ===== EVENT LISTENERS PARA CERRAR MODALES =====
 window.addEventListener('click', function(event) {
@@ -71,5 +71,14 @@ window.addEventListener('click', function(event) {
     }
     if (event.target === editModal) {
         closeEditModal();
+    }
+});
+
+// ===== CERRAR CON ESCAPE (opcional) =====
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeDeleteModal();
+        closeEditModal();
+        customModal.style.display = 'none';
     }
 });

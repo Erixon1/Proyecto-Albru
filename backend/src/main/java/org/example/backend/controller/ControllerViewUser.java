@@ -63,4 +63,29 @@ public class ControllerViewUser {
         return "access-denied";
     }
 
+    @GetMapping("/editar/{dni}")
+    public String editarUsuario(@PathVariable("dni") String dni, Model model) {
+        UserDto userDto = userServiceImp.findById(dni);
+        model.addAttribute("usuario", userDto);
+        model.addAttribute("listaUsuarios", userServiceImp.findAll());
+        model.addAttribute("listaAuthorities", authorityRepository.findAll());
+        return "admin";
+    }
+
+    @PostMapping("/update")
+    public String actualizarUsuario(@ModelAttribute("usuario") UserDto usuarioActualizado) {
+        UserDto usuarioExistente = userServiceImp.findById(usuarioActualizado.getDni());
+
+        if (usuarioExistente != null) {
+            usuarioExistente.setNombres(usuarioActualizado.getNombres());
+            usuarioExistente.setApellidos(usuarioActualizado.getApellidos());
+            usuarioExistente.setGenero(usuarioActualizado.getGenero());
+            usuarioExistente.setAuthorityId(usuarioActualizado.getAuthorityId());
+
+            userServiceImp.save(usuarioExistente);
+        }
+
+        return "redirect:/user/admin";
+    }
+
 }
