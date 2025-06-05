@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEADS</title>
+
+    <!-- ICONOS & FUENTES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!-- ICONO Y ESTILOS PERSONALIZADOS -->
+    <link rel="icon" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Menú lateral -->
+        <div th:replace="~{fragments/navbar :: sidebar}"></div>
+
+        <!-- Botón para toggle del menú -->
+        <div th:replace="~{fragments/navbar :: menuToggle}"></div>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="container">
+            <main class="grid-item content">
+                <div class="main-conteiner">
+                    <div class="first-item-main">
+                        <h1 class="title-main">Leads</h1>
+                        <div class="btn-content">
+                            <button type="button" class="btn btn-primary btn-create-leads" id="openModalBtn">+ Agregar
+                                Leads</button>
+                        </div>
+                    </div>
+                    <!-- Tabla de contenidos -->
+                    <div class="second-item-main">
+                        <table class="table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="column-item data-table">Numero</th>
+                                    <th class="column-item data-table">Fecha contacto</th>
+                                    <th class="column-item data-table">Estado</th>
+                                    <th class="column-item data-table">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+
+                                <tr>
+                                    <td>987654321</td>
+                                    <td>05-06-2025</td>
+                                    <td>Primera vez</td>
+                                    <td class="data-table">
+                                        <div class="buttons-container">
+                                            <button class="btn-actions btn-edit">
+                                                <i class="bi bi-pencil-square"></i> Asignar Asesor
+                                            </button>
+                                            <button class="btn-actions btn-delete">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>123456789</td>
+                                    <td>05-05-2025</td>
+                                    <td>Segunda vez</td>
+                                    <td class="data-table">
+                                        <div class="buttons-container">
+                                            <button class="btn-actions btn-edit">
+                                                <i class="bi bi-pencil-square"></i> Asignar Asesor
+                                            </button>
+                                            <button class="btn-actions btn-delete">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="lead_contacto : ${listaLeads}">
+                                    <td th:text="${lead.celular}"></td>
+                                    <td th:text="${lead.fecha}"></td>
+                                    <td th:text="${lead.estado}"></td>
+                                    <td class="data-table">
+                                        <div class="buttons-container">
+                                            <button class="btn-actions btn-edit" th:data-user-dni="${usuario.dni}"
+                                                th:data-user-nombres="${usuario.nombres}"
+                                                th:data-user-apellidos="${usuario.apellidos}"
+                                                th:data-user-genero="${usuario.genero}"
+                                                th:data-user-role-id="${usuario.authorityId}"
+                                                onclick="openEditModal(this)">
+
+                                                <i class="bi bi-pencil-square"></i> Editar
+                                                </*button>
+                                                <button class="btn-actions btn-delete" th:data-user-id="${lead.id}"
+                                                    th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
+                                                    onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+    <script src="/js/asistenciaYsidebar.js"></script>
+
+</body>
+
+</html>

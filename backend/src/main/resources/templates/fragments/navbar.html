@@ -36,6 +36,14 @@
                     <div class="text">Crear usuario</div>
                 </a>
             </li>
+            
+            <!-- Leads: solo para ROLE_ADMIN -->
+            <li style="--bg: #ff7043" id="menu-leads" sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/user/leads}">
+                    <div class="icon"><i class='bx bx-send'></i></div>
+                    <div class="text">Asignar Leads</div>
+                </a>
+            </li>
 
             <!-- Seguimiento: (no se especificó control, lo dejo como está) -->
             <li style="--bg: #0fc70f" id="menu-seguimiento">
