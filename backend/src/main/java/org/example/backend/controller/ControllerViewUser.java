@@ -31,6 +31,10 @@ public class ControllerViewUser {
     public String registro() {
         return "registro";
     }
+    @GetMapping("/leads")
+    public String leads() {
+        return "leads";
+    }
     @GetMapping("/perfil")
     public String perfil() {
         return "perfil";

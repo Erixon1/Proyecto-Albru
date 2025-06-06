@@ -59,14 +59,19 @@ body{
     display: flex;
     justify-content: start;
     align-items: center;
+    
     padding: 30px;
 }
 
 .title-main {
-    font-size: 1.6rem;
+    text-align: left;
+    font-size: 1.8rem;    
+    font-weight: bold;
+    color: #1e43b8;
 }
 
-.btn-create-users {
+.btn-create-users,
+.btn-create-leads {
     outline: none;
     border: none;
     background-color: #1e43b8;
@@ -79,27 +84,28 @@ body{
     cursor: pointer;
 }
 
-.btn-create-users:hover {
+.btn-create-users:hover,
+.btn-create-leads:hover {
     background-color: #153395;
 }
 
 .second-item-main {
     margin: 0px 15px;
+    margin-top: 20px;
+    text-align: left;
 }
 
 .table {
-    display: table;
-    border-collapse: collapse;
-    text-align: left;
     width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
 }
 
-.table-header {
+.table-header th {
     background-color: #1e43b8;
     color: #fff;
-    letter-spacing: 0.35px;
-    display: table-header-group;
-    position: relative;
+    text-align: left;
+    padding: 10px;
 }
 
 tr {
@@ -109,13 +115,19 @@ tr {
 }
 
 .column-item {
-    display: table-cell;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .table-body {
     display: table-row-group;
     position: relative;
 }
+.table td {
+    text-align: center;
+}
+
 
 .data-table {
     padding: 10px;
@@ -138,6 +150,8 @@ tr {
     border-radius: 8px;
     cursor: pointer;
     color: #fff;
+    display: flex;
+    gap: 5px;
 }
 
 .btn-edit {
@@ -146,6 +160,9 @@ tr {
 
 .btn-delete {
     background-color: #f44;
+}
+.btn-actions:hover {
+    opacity: 0.8;
 }
 
 /* MODAL CREATE USERS */

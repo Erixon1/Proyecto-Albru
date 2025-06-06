@@ -229,6 +229,8 @@ function detectActiveMenu() {
         '/user/admin': 'menu-crear-usuario',
         '/user/ayudaAdmin': 'ayudaAdmin',
         '/user/ayudaAsesor': 'ayudaAsesor',
+        '/user/leads': 'menu-leads',
+
         '/login': null // Limpiar al cerrar sesión
     };
 
@@ -250,6 +252,8 @@ function detectActiveMenu() {
     setActiveMenu('ayudaAdmin');
     } else if (path.startsWith('/user/ayudaAsesor')) {
     setActiveMenu('ayudaAsesor');
+    } else if (path.startsWith('/user/leads')) {
+        setActiveMenu('menu-leads');
     } else {
         setActiveMenu('menu-inicio');
     }
