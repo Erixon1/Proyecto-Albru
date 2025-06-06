@@ -161,24 +161,42 @@ function clearActiveMenu() {
     sessionStorage.removeItem('activeMenu');
 }
 
+// Estado del menú
+const states = {
+    menuActive: false
+};
+
 // Función para alternar el menú lateral
 function toggleMenu() {
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.querySelector('.menuToggle');
     const container = document.querySelector('.container');
 
-    state.menuActive = !state.menuActive;
+    states.menuActive = !states.menuActive;
 
-    if (state.menuActive) {
+    if (states.menuActive) {
         sidebar.classList.add('active');
         menuToggle.classList.add('active');
-        container.classList.add('menu-active');
+        if (container) container.classList.add('menu-active');
     } else {
         sidebar.classList.remove('active');
         menuToggle.classList.remove('active');
-        container.classList.remove('menu-active');
+        if (container) container.classList.remove('menu-active');
     }
 }
+
+// Cierra el menú si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const sidebar = document.querySelector('.sidebar');
+    const menuToggle = document.querySelector('.menuToggle');
+
+    const clickInsideSidebar = sidebar.contains(event.target);
+    const clickOnToggle = menuToggle.contains(event.target);
+
+    if (states.menuActive && !clickInsideSidebar && !clickOnToggle) {
+        toggleMenu(); // cierra el menú
+    }
+});
 
 // Función para cambiar el menú activo
 function setActiveMenu(menuId) {
@@ -209,6 +227,8 @@ function detectActiveMenu() {
         '/user/seguimiento': 'menu-seguimiento',
         '/user/perfil': 'menu-perfil',
         '/user/admin': 'menu-crear-usuario',
+        '/user/ayudaAdmin': 'ayudaAdmin',
+        '/user/ayudaAsesor': 'ayudaAsesor',
         '/login': null // Limpiar al cerrar sesión
     };
 
@@ -226,6 +246,10 @@ function detectActiveMenu() {
         setActiveMenu('menu-perfil');
     } else if (path.startsWith('/user/admin')) {
         setActiveMenu('menu-crear-usuario');
+    } else if (path.startsWith('/user/ayudaAdmin')) {
+    setActiveMenu('ayudaAdmin');
+    } else if (path.startsWith('/user/ayudaAsesor')) {
+    setActiveMenu('ayudaAsesor');
     } else {
         setActiveMenu('menu-inicio');
     }

@@ -45,6 +45,22 @@
                 </a>
             </li>
 
+            <!-- AYUDA / SOPORTE PARA ADMIN -->
+            <li style="--bg: #4ff" id="ayudaAdmin" sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/user/ayudaAdmin}">
+                    <div class="icon"><i class='bx bx-info-circle'></i></div>
+                    <div class="text">Ayuda / Soporte</div>
+                </a>
+            </li>
+
+            <!-- AYUDA / SOPORTE PARA ASESOR -->
+            <li style="--bg: #4ff" id="ayudaAsesor" sec:authorize="hasRole('ASESOR')">
+                <a th:href="@{/user/ayudaAsesor}">
+                    <div class="icon"><i class='bx bx-info-circle'></i></div>
+                    <div class="text">Ayuda / Soporte</div>
+                </a>
+            </li>
+
             <!-- Perfil: visible para cualquier rol autenticado -->
             <li style="--bg: #ffa117" id="menu-perfil" sec:authorize="isAuthenticated()">
                 <a th:href="@{/user/perfil}">
