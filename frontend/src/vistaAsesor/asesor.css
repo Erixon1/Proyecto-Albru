@@ -1,0 +1,183 @@
+html, body {
+    background-color: #1e43b8;
+    max-width: 100dvw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------- NAVBAR SECTION --------------------- */
+.navbar {
+    background-color: #1e43b8;
+    position: sticky !important;
+    top: 0;
+    z-index: 1550;
+    width: 100%;
+}
+
+.nav-conteiner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* -- BURGUER BUTTON -- */
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 1.6rem;
+    order: 0;
+    padding: 0.25rem 0.5rem; 
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+.offcanvas .btn-close {
+    color: #1e43b8;
+    filter: none;
+    border: none; 
+    opacity: 1; 
+}
+
+.btn-close:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.logout-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.btn-logout {
+    font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+    .offcanvas-start {
+        width: 70% !important; /* o 60%, ajusta según prefieras */
+    }
+}
+
+/* -- END BURGUER BUTTON --*/
+
+.title {
+    color: #fff;
+    margin-right: auto;
+    padding: 0 30px;
+    font-size: 1.6rem;
+    margin-top: 9px;
+}
+
+.logo {
+    height: auto;
+    max-height: 90px;
+    width: auto;
+    order: 1;
+    margin-left: auto;
+}
+
+.offcanvas {
+    background-color: #fff;
+}
+
+.nav-link {
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    
+}
+
+.offcanvas .nav-link,
+    .offcanvas .offcanvas-title {
+        color: #1e43b8;
+        text-decoration: none;
+}
+
+.offcanvas .icon-person {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.icon-person {
+    background-color: #ccc;
+    top: 20px;
+    font-size: 4rem;
+    padding: 0 18px;
+    border-radius: 100%;
+}
+
+.user-info {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 1.4rem;
+}
+
+.user-rol {
+    color: #1e43b8;
+    font-weight: bold;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+/* --------------------- END NAVBAR SECTION --------------------- */
+
+/* --------------------- MAIN SECTION --------------------- */
+
+.container {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 10px 30px;
+    margin: auto;
+}
+
+
+.form-label {
+    font-size: 1rem;
+    color: #1e43b8;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 10px 10px;
+    height: 30px;
+    margin-bottom: 2px;
+}
+
+.info {
+    width: 100%;
+}
+
+.info:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #1e43b8;
+}
+
+.btn {
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    border-radius: 25px;
+    background-color: #1e43b8;
+}
