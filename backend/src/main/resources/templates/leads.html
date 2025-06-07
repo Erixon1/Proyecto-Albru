@@ -51,39 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-body">
-
-                                <tr>
-                                    <td>987654321</td>
-                                    <td>05-06-2025</td>
-                                    <td>Primera vez</td>
-                                    <td class="data-table">
-                                        <div class="buttons-container">
-                                            <button class="btn-actions btn-edit">
-                                                <i class="bi bi-pencil-square"></i> Asignar Asesor
-                                            </button>
-                                            <button class="btn-actions btn-delete">
-                                                <i class="bi bi-trash"></i> Eliminar
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td>123456789</td>
-                                    <td>05-05-2025</td>
-                                    <td>Segunda vez</td>
-                                    <td class="data-table">
-                                        <div class="buttons-container">
-                                            <button class="btn-actions btn-edit">
-                                                <i class="bi bi-pencil-square"></i> Asignar Asesor
-                                            </button>
-                                            <button class="btn-actions btn-delete">
-                                                <i class="bi bi-trash"></i> Eliminar
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr th:each="lead_contacto : ${listaLeads}">
+                                <tr th:each="lead : ${listaLeads}">
                                     <td th:text="${lead.celular}"></td>
                                     <td th:text="${lead.fecha}"></td>
                                     <td th:text="${lead.estado}"></td>
@@ -96,8 +64,8 @@
                                                 th:data-user-role-id="${usuario.authorityId}"
                                                 onclick="openEditModal(this)">
 
-                                                <i class="bi bi-pencil-square"></i> Editar
-                                                </*button>
+                                                <i class="bi bi-pencil-square"></i> Asignar
+                                                </button>
                                                 <button class="btn-actions btn-delete" th:data-user-id="${lead.id}"
                                                     th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
                                                     onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
@@ -112,10 +80,36 @@
                 </div>
             </main>
         </div>
-    </div>
-    <script src="/js/admin.js"></script>
-    <script src="/js/asistenciaYsidebar.js"></script>
 
+        <!-- Modal para importar Excel -->
+        <div class="modal" id="importModal" style="display:none; position: fixed; top: 0; left: 0;
+     width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
+            <div style="background-color: white; padding: 20px; border-radius: 10px; width: 400px;">
+                <h3>Importar Leads desde Excel</h3>
+                <form th:action="@{/user/importar/excel}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".xlsx" required class="form-control mb-3">
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="submit" class="btn btn-success">Subir</button>
+                        <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="/js/asistenciaYsidebar.js"></script>
+    <script>
+            const modal = document.getElementById("importModal");
+            const openModalBtn = document.getElementById("openModalBtn");
+
+            openModalBtn.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+            function cerrarModal() {
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 
 </html>
