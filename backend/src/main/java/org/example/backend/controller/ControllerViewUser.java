@@ -47,6 +47,10 @@ public class ControllerViewUser {
     public String ayudaAsesor() {
         return "ayudaAsesor";
     }
+    @GetMapping("/detallesAdmin")
+    public String detallesAdmin() {
+        return "detallesAdmin";
+    }
 
     @GetMapping("/admin")
     public String registerForm(Model model){
