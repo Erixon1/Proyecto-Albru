@@ -9,12 +9,27 @@ openModalBtn.addEventListener('click', () => {
 });
 
 closeModalBtn.addEventListener('click', () => {
-    customModal.style.display = 'none';
+    closeUserModal();
 });
 
 modalOverlay.addEventListener('click', () => {
-    customModal.style.display = 'none';
+    closeUserModal();
 });
+
+// Función para cerrar y limpiar modal de creación/edición
+function closeUserModal() {
+    customModal.style.display = 'none';
+
+    // Restaurar valores del formulario
+    document.getElementById('editMode').value = 'false';
+    document.getElementById('modalTitle').textContent = 'Crear nuevo usuario';
+    document.getElementById('dni').readOnly = false;
+    document.getElementById('dni').disabled = false;
+    document.getElementById('create-user-form').reset();
+    document.getElementById('password').closest('.form-group').style.display = 'block';
+    document.getElementById('submitButton').textContent = 'Registrar nuevo usuario';
+    document.getElementById('create-user-form').setAttribute('action', '/user/admin');
+}
 
 // Spring Boot maneja el envío del formulario de creación automáticamente
 
@@ -41,22 +56,22 @@ function closeDeleteModal() {
 function openEditModal(button) {
     document.getElementById('editMode').value = 'true';
     document.getElementById('modalTitle').textContent = 'Editar usuario';
+
     document.getElementById('dni').value = button.getAttribute('data-user-dni');
     document.getElementById('dni').readOnly = true; // Evitar modificar DNI
     document.getElementById('name').value = button.getAttribute('data-user-nombres');
     document.getElementById('last-name').value = button.getAttribute('data-user-apellidos');
     document.getElementById('gender').value = button.getAttribute('data-user-genero');
     document.getElementById('user-type').value = button.getAttribute('data-user-role-id');
+    
     document.getElementById('password').closest('.form-group').style.display = 'none';
     document.getElementById('submitButton').textContent = 'Guardar cambios';
     document.getElementById('create-user-form').setAttribute('action', '/user/update');
-    document.getElementById('customModal').style.display = 'block';
+    customModal.style.display = 'block';
 }
 
 
-function closeEditModal() {
-    document.getElementById("modal-edit-user").style.display = "none";
-}
+
 
 // Spring Boot maneja el envío del formulario de edición automáticamente
 
@@ -64,13 +79,13 @@ function closeEditModal() {
 // ===== EVENT LISTENERS PARA CERRAR MODALES =====
 window.addEventListener('click', function(event) {
     const deleteModal = document.getElementById('modal-delete-user');
-    const editModal = document.getElementById('modal-edit-user');
 
     if (event.target === deleteModal) {
         closeDeleteModal();
     }
-    if (event.target === editModal) {
-        closeEditModal();
+
+    if (event.target === customModal) {
+        closeUserModal();
     }
 });
 
@@ -78,7 +93,6 @@ window.addEventListener('click', function(event) {
 window.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeDeleteModal();
-        closeEditModal();
-        customModal.style.display = 'none';
+        closeEditModal();        
     }
 });
