@@ -29,14 +29,17 @@
 
 
         <!-- CONTENIDO PRINCIPAL -->
-        <div class="container">
-            <main class="grid-item content">
-                <div class="main-conteiner">
-                    <div class="first-item-main">
-                        <h1 class="title-main">Leads</h1>
-                        <div class="btn-content">
-                            <button type="button" class="btn btn-primary btn-create-leads" id="openModalBtn">+ Agregar
-                                Leads</button>
+        <div class="main-content">
+            <div class="container">
+                <main class="grid-item content">
+                    <div class="main-conteiner">
+                        <div class="first-item-main">
+                            <h1 class="title-main">Leads</h1>
+                            <div class="btn-content">
+                                <button type="button" class="btn btn-primary btn-create-leads" id="openModalBtn">+
+                                    Agregar
+                                    Leads</button>
+                            </div>
                         </div>
                     </div>
                     <!-- Tabla de contenidos -->
@@ -71,14 +74,54 @@
                                                     onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
                                                     <i class="bi bi-trash"></i> Eliminar
                                                 </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>123456789</td>
+                                        <td>05-05-2025</td>
+                                        <td>Segunda vez</td>
+                                        <td class="data-table">
+                                            <div class="buttons-container">
+                                                <button class="btn-actions btn-edit">
+                                                    <i class="bi bi-pencil-square"></i> Asignar Asesor
+                                                </button>
+                                                <button class="btn-actions btn-delete">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr th:each="lead_contacto : ${listaLeads}">
+                                        <td th:text="${lead.celular}"></td>
+                                        <td th:text="${lead.fecha}"></td>
+                                        <td th:text="${lead.estado}"></td>
+                                        <td class="data-table">
+                                            <div class="buttons-container">
+                                                <button class="btn-actions btn-edit" th:data-user-dni="${usuario.dni}"
+                                                    th:data-user-nombres="${usuario.nombres}"
+                                                    th:data-user-apellidos="${usuario.apellidos}"
+                                                    th:data-user-genero="${usuario.genero}"
+                                                    th:data-user-role-id="${usuario.authorityId}"
+                                                    onclick="openEditModal(this)">
+
+                                                    <i class="bi bi-pencil-square"></i> Editar
+                                                    </*button>
+                                                    <button class="btn-actions btn-delete" th:data-user-id="${lead.id}"
+                                                        th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
+                                                        onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
+                                                        <i class="bi bi-trash"></i> Eliminar
+                                                    </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
 
         <!-- Modal para importar Excel -->
