@@ -76,46 +76,7 @@
                                                 </button>
                                             </div>
                                         </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>123456789</td>
-                                        <td>05-05-2025</td>
-                                        <td>Segunda vez</td>
-                                        <td class="data-table">
-                                            <div class="buttons-container">
-                                                <button class="btn-actions btn-edit">
-                                                    <i class="bi bi-pencil-square"></i> Asignar Asesor
-                                                </button>
-                                                <button class="btn-actions btn-delete">
-                                                    <i class="bi bi-trash"></i> Eliminar
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr th:each="lead_contacto : ${listaLeads}">
-                                        <td th:text="${lead.celular}"></td>
-                                        <td th:text="${lead.fecha}"></td>
-                                        <td th:text="${lead.estado}"></td>
-                                        <td class="data-table">
-                                            <div class="buttons-container">
-                                                <button class="btn-actions btn-edit" th:data-user-dni="${usuario.dni}"
-                                                    th:data-user-nombres="${usuario.nombres}"
-                                                    th:data-user-apellidos="${usuario.apellidos}"
-                                                    th:data-user-genero="${usuario.genero}"
-                                                    th:data-user-role-id="${usuario.authorityId}"
-                                                    onclick="openEditModal(this)">
-
-                                                    <i class="bi bi-pencil-square"></i> Editar
-                                                    </*button>
-                                                    <button class="btn-actions btn-delete" th:data-user-id="${lead.id}"
-                                                        th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
-                                                        onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
-                                                        <i class="bi bi-trash"></i> Eliminar
-                                                    </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    </tr>                                    
                                 </tbody>
                             </table>
                         </div>
@@ -126,7 +87,7 @@
 
         <!-- Modal para importar Excel -->
         <div class="modal" id="importModal" style="display:none; position: fixed; top: 0; left: 0;
-     width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
+        width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
             <div style="background-color: white; padding: 20px; border-radius: 10px; width: 400px;">
                 <h3>Importar Leads desde Excel</h3>
                 <form th:action="@{/user/importar/excel}" method="post" enctype="multipart/form-data">
