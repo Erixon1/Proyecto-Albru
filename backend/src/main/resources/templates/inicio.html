@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <div class="app-container">        
+    <div class="app-container">
         <!-- Menú lateral -->
         <div th:replace="~{fragments/navbar :: sidebar}"></div>
 
         <!-- Botón para toggle del menú -->
         <div th:replace="~{fragments/navbar :: menuToggle}"></div>
-        
+
         <!-- Contenido principal -->
         <div class="main-content">
             <div class="dashboard-container">
@@ -103,7 +103,7 @@
                             <img src="" alt="USER" />
                         </div>
                         <h2 sec:authentication="principal.fullName"></h2>
-                        <p sec:authentication="principal.roleName" class="user-rol" ></p>
+                        <p sec:authentication="principal.roleName" class="user-rol"></p>
                     </div>
 
                     <div class="time-section">

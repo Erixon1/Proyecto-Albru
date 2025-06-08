@@ -39,6 +39,14 @@ public class ControllerViewUser {
     public String perfil() {
         return "perfil";
     }
+    @GetMapping("/asistenciaSeguimiento")
+    public String asistenciaSeguimiento() {
+        return "asistenciaSeguimiento";
+    }
+    @GetMapping("/actividades")
+    public String actividades() {
+        return "actividades";
+    }
     @GetMapping("/ayudaAdmin")
     public String ayudaAdmin() {
         return "ayudaAdmin";

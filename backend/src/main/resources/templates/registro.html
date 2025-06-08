@@ -29,81 +29,82 @@
         <div th:replace="~{fragments/navbar :: menuToggle}"></div>
 
         <!-- CONTENIDO PRINCIPAL -->
-        <div class="container">
-            <form>
-                <div class="column-form">
-                    <label for="dni">DNI</label>
-                    <input type="number" id="dni" required>
+        <div class="main-content">
+            <div class="container">
+                <form>
+                    <div class="column-form">
+                        <label for="dni">DNI</label>
+                        <input type="number" id="dni" required>
 
-                    <label for="customerName">Nombre Completo del Cliente</label>
-                    <input type="text" id="customerName" required>
+                        <label for="customerName">Nombre Completo del Cliente</label>
+                        <input type="text" id="customerName" required>
 
-                    <label for="birthDate">Fecha de Nacimiento</label>
-                    <input type="date" id="birthDate" required>
+                        <label for="birthDate">Fecha de Nacimiento</label>
+                        <input type="date" id="birthDate" required>
 
-                    <label for="address">Dirección</label>
-                    <input type="text" id="address" required>
+                        <label for="address">Dirección</label>
+                        <input type="text" id="address" required>
 
-                    <label for="numberRecord">Número de Grabación</label>
-                    <input type="number" id="numberRecord" required>
+                        <label for="numberRecord">Número de Grabación</label>
+                        <input type="number" id="numberRecord" required>
 
-                    <label for="nameOwner">Nombre del Titular</label>
-                    <input type="text" id="nameOwner" required>
+                        <label for="nameOwner">Nombre del Titular</label>
+                        <input type="text" id="nameOwner" required>
 
-                    <label for="district">Distrito</label>
-                    <input type="text" id="district" required>
-                </div>
+                        <label for="district">Distrito</label>
+                        <input type="text" id="district" required>
+                    </div>
 
-                <div class="column-form">
-                    <label for="lead">Lead</label>
-                    <input type="text" id="lead" required>
+                    <div class="column-form">
+                        <label for="lead">Lead</label>
+                        <input type="text" id="lead" required>
 
-                    <label for="mail">Correo Electrónico</label>
-                    <input type="email" id="mail" required>
+                        <label for="mail">Correo Electrónico</label>
+                        <input type="email" id="mail" required>
 
-                    <label for="referenceNumber">Número de Referencia</label>
-                    <input type="text" id="referenceNumber" required>
+                        <label for="referenceNumber">Número de Referencia</label>
+                        <input type="text" id="referenceNumber" required>
 
-                    <label for="plan">Plan Exacto/Bono Promo</label>
-                    <input type="text" id="plan" required>
+                        <label for="plan">Plan Exacto/Bono Promo</label>
+                        <input type="text" id="plan" required>
 
-                    <label for="cabling">Cableado</label>
-                    <input type="text" id="cabling" required>
+                        <label for="cabling">Cableado</label>
+                        <input type="text" id="cabling" required>
 
-                    <label for="mesh">Mesh</label>
-                    <input type="number" id="mesh" required>
+                        <label for="mesh">Mesh</label>
+                        <input type="number" id="mesh" required>
 
-                    <label for="installationCost">Costo de Instalación</label>
-                    <input type="number" id="installationCost" required>
-                </div>
+                        <label for="installationCost">Costo de Instalación</label>
+                        <input type="number" id="installationCost" required>
+                    </div>
 
-                <div class="column-form">
-                    <label for="validationTime">Hora de validación</label>
-                    <input type="time" id="validationTime" disabled>
+                    <div class="column-form">
+                        <label for="validationTime">Hora de validación</label>
+                        <input type="time" id="validationTime" disabled>
 
-                    <label for="ruc">CE/RUC</label>
-                    <input type="number" id="ruc" required>
+                        <label for="ruc">CE/RUC</label>
+                        <input type="number" id="ruc" required>
 
-                    <label for="platform">Plataforma</label>
-                    <input type="text" id="platform" required>
+                        <label for="platform">Plataforma</label>
+                        <input type="text" id="platform" required>
 
-                    <label for="regularPrice">Precio Regular/Precio Promo</label>
-                    <input type="number" id="regularPrice" required>
+                        <label for="regularPrice">Precio Regular/Precio Promo</label>
+                        <input type="number" id="regularPrice" required>
 
-                    <label for="winBox">Win Box</label>
-                    <input type="text" id="winBox" required>
+                        <label for="winBox">Win Box</label>
+                        <input type="text" id="winBox" required>
 
-                    <label for="dateInstallation">Hora y Fecha de Instalación</label>
-                    <input type="datetime-local" id="dateInstallation" required>
-                </div>
+                        <label for="dateInstallation">Hora y Fecha de Instalación</label>
+                        <input type="datetime-local" id="dateInstallation" required>
+                    </div>
 
-                <div style="width: 100%; text-align: right;">
-                    <button type="submit"><i class="bi bi-send"></i> Enviar</button>
-                </div>
-            </form>
+                    <div style="width: 100%; text-align: right;">
+                        <button type="submit"><i class="bi bi-send"></i> Enviar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
     <!-- SCRIPTS -->
     <script src="/js/horaActual.js"></script>
     <script src="/js/asistenciaYsidebar.js"></script>

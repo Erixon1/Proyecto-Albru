@@ -13,8 +13,9 @@
 <body>
     <!-- Botón para toggle del menú -->
     <div th:replace="~{fragments/navbar :: menuToggle}"></div>
+    <div th:replace="~{fragments/navbar :: sidebar}" class="grid-item sidebar"></div>
+<div class="main-content">
     <div class="grid-container">
-        <div th:replace="~{fragments/navbar :: sidebar}" class="grid-item sidebar"></div>
         <main class="grid-item main">
             <h1 class="title">Centro de Ayuda y Soporte</h1>
             <div class="card">
@@ -91,7 +92,7 @@
             </div>
         </main>
     </div>
-
+</div>
     <script src="/js/asistenciaYsidebar.js"></script>
 </body>
 </html>
