@@ -11,6 +11,7 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
+    @Mapping(target = "authorityId", expression = "java(user.getAuthority().getId())")
     @Mapping(target = "roleName", expression = "java(user.getRoleName())")
     UserDto toDto(User user);
 

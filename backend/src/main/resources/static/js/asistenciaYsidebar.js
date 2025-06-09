@@ -186,7 +186,7 @@ function toggleMenu() {
 }
 
 // Cierra el menú si se hace clic fuera de él
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.querySelector('.menuToggle');
 
@@ -224,9 +224,14 @@ function detectActiveMenu() {
     const routeMap = {
         '/user': 'menu-inicio',
         '/user/registro': 'menu-registro',
-        '/user/seguimiento': 'menu-seguimiento',
+        '/user/asistenciaSeguimiento': 'menu-asistenciaSeguimiento',
+        '/user/actividades': 'menu-actividades',
         '/user/perfil': 'menu-perfil',
         '/user/admin': 'menu-crear-usuario',
+        '/user/ayudaAdmin': 'ayudaAdmin',
+        '/user/ayudaAsesor': 'ayudaAsesor',
+        '/user/leads': 'menu-leads',
+
         '/login': null // Limpiar al cerrar sesión
     };
 
@@ -238,12 +243,20 @@ function detectActiveMenu() {
     // Coincidencias parciales
     if (path.startsWith('/user/registro')) {
         setActiveMenu('menu-registro');
-    } else if (path.startsWith('/user/seguimiento')) {
+    } else if (path.startsWith('/user/asistenciaSeguimiento')) {
         setActiveMenu('menu-seguimiento');
+    } else if (path.startsWith('/user/actividades')) {
+        setActiveMenu('menu-actividades');
     } else if (path.startsWith('/user/perfil')) {
         setActiveMenu('menu-perfil');
     } else if (path.startsWith('/user/admin')) {
         setActiveMenu('menu-crear-usuario');
+    } else if (path.startsWith('/user/ayudaAdmin')) {
+        setActiveMenu('ayudaAdmin');
+    } else if (path.startsWith('/user/ayudaAsesor')) {
+        setActiveMenu('ayudaAsesor');
+    } else if (path.startsWith('/user/leads')) {
+        setActiveMenu('menu-leads');
     } else {
         setActiveMenu('menu-inicio');
     }

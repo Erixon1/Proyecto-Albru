@@ -68,6 +68,10 @@ main {
     width: var(--sidebar-active-width);
 }
 
+.sidebar.active~.main-content {
+    margin-left: 270px;
+}
+
 .sidebar ul {
     position: relative;
     height: 100vh;
@@ -144,6 +148,7 @@ main {
     color: #333;
     transition: 0.5s;
 }
+
 .sidebar ul li a .imgBx {
     position: relative;
     display: flex;
@@ -196,6 +201,7 @@ main {
     margin-top: auto;
     width: 100%;
 }
+
 .imgBx {
     position: relative;
     width: 40px;
@@ -656,4 +662,3 @@ button {
         font-size: 1.2rem;
     }
 }
-
