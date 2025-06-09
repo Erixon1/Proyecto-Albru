@@ -61,17 +61,6 @@ public class ControllerViewUser {
     public String actividades() {
         return "actividades";
     }
-
-    @GetMapping("/ayudaAdmin")
-    public String ayudaAdmin() {
-        return "ayudaAdmin";
-    }
-
-
-    @GetMapping("/ayudaAsesor")
-    public String ayudaAsesor() {
-        return "ayudaAsesor";
-    }
     @GetMapping("/detallesAdmin")
     public String detallesAdmin() {
         return "detallesAdmin";
