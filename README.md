@@ -304,12 +304,6 @@ git push origin nombre-de-la-rama
 > [!IMPORTANT]
 > Cuando abras un Pull Request, recuerda asignarme para la revisión.
 
-## 🛠️ Comandos Útiles
-
-- **Iniciar servidor:** `npm start`
-- **Ejecutar ESLint:** `npm run lint`
-- **Formatear con Prettier:** `npm run format`
-
 ### 4. Configurar el Backend (En proceso)
 
 > Tener JDK 19+ y un entorno Spring Boot listo.
