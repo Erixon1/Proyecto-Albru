@@ -4,10 +4,8 @@ package org.example.backend.controller;
 import org.example.backend.dto.UserDto;
 import org.example.backend.entity.Contacto;
 import org.example.backend.entity.Empresa;
-import org.example.backend.repository.AuthorityRepository;
-import org.example.backend.repository.ContactoRepository;
-import org.example.backend.repository.EmpresaRepository;
-import org.example.backend.repository.LeadRepository;
+import org.example.backend.entity.EmpresaPlan;
+import org.example.backend.repository.*;
 import org.example.backend.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +26,9 @@ public class ControllerViewUser {
     private final ContactoRepository contactoRepository;
     private final ContactoServiceImp contactoServiceImp;
     private final EmpresaRepository empresaRepository;
+    private final EmpresaPlanRepository empresaPlanRepository;
 
-    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp, EmpresaRepository empresaRepository) {
+    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp, EmpresaRepository empresaRepository, EmpresaPlanRepository empresaPlanRepository) {
         this.userServiceImp = userServiceImp;
         this.authorityRepository = authorityRepository;
         this.leadRepository = leadRepository;
@@ -37,6 +36,7 @@ public class ControllerViewUser {
         this.contactoRepository = contactoRepository;
         this.contactoServiceImp = contactoServiceImp;
         this.empresaRepository = empresaRepository;
+        this.empresaPlanRepository = empresaPlanRepository;
     }
 
 
@@ -66,14 +66,40 @@ public class ControllerViewUser {
     @GetMapping("/empresas")
     public String empresas(Model model){
         model.addAttribute("listaEmpresas", empresaRepository.findAll());
-        model.addAttribute("empresa",new Empresa());
+        model.addAttribute("listaPlanes", empresaPlanRepository.findAll()); // Necesitas crear este repository
+        model.addAttribute("empresa", new Empresa());
+        model.addAttribute("empresaPlan", new EmpresaPlan()); // Agregar el objeto para el formulario
         return "empresas";
     }
 
-    @PostMapping("/empresas")
-    public String agregarEmpresa(@ModelAttribute Empresa empresa){
-        empresaRepository.save(empresa);
-        return "redirect:/user/empresas?success";
+    // Método para crear nuevo plan
+    @PostMapping("/planes")
+    public String agregarPlan(@ModelAttribute EmpresaPlan empresaPlan){
+        empresaPlanRepository.save(empresaPlan);
+        return "redirect:/user/empresas?planSuccess";
+    }
+
+    // Método para eliminar plan
+    @PostMapping("/planes/delete/{id}")
+    public String eliminarPlan(@PathVariable("id") Integer id) {
+        empresaPlanRepository.deleteById(id);
+        return "redirect:/user/empresas?planDeleted=success";
+    }
+
+    // Método para actualizar plan
+    @PostMapping("/planes/update")
+    public String actualizarPlan(@ModelAttribute("empresaPlan") EmpresaPlan planActualizado) {
+        EmpresaPlan planExistente = empresaPlanRepository.findById(planActualizado.getId()).orElse(null);
+
+        if (planExistente != null) {
+            planExistente.setTipo(planActualizado.getTipo());
+            planExistente.setPrecio(planActualizado.getPrecio());
+            planExistente.setDescripcion(planActualizado.getDescripcion());
+            planExistente.setIdEmpresa(planActualizado.getIdEmpresa());
+            empresaPlanRepository.save(planExistente);
+        }
+
+        return "redirect:/user/empresas?planUpdated=success";
     }
 
     @PostMapping("/empresas/delete/{id}")

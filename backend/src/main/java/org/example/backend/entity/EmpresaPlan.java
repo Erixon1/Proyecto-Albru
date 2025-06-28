@@ -11,6 +11,7 @@ import java.util.Set;
 public class EmpresaPlan {
     @Id
     @Column(name = "plan_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
