@@ -2,9 +2,12 @@ package org.example.backend.controller;
 
 
 import org.example.backend.dto.UserDto;
+import org.example.backend.entity.Contacto;
 import org.example.backend.entity.User;
 import org.example.backend.repository.AuthorityRepository;
+import org.example.backend.repository.ContactoRepository;
 import org.example.backend.repository.LeadRepository;
+import org.example.backend.service.ContactoServiceImp;
 import org.example.backend.service.LeadContactoImp;
 import org.example.backend.service.UserService;
 import org.example.backend.service.UserServiceImp;
@@ -24,12 +27,16 @@ public class ControllerViewUser {
     private final AuthorityRepository authorityRepository;
     private final LeadRepository leadRepository;
     private final LeadContactoImp leadContactoImp;
+    private final ContactoRepository contactoRepository;
+    private final ContactoServiceImp contactoServiceImp;
 
-    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp) {
+    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp) {
         this.userServiceImp = userServiceImp;
         this.authorityRepository = authorityRepository;
         this.leadRepository = leadRepository;
         this.leadContactoImp = leadContactoImp;
+        this.contactoRepository = contactoRepository;
+        this.contactoServiceImp = contactoServiceImp;
     }
 
 
@@ -44,9 +51,17 @@ public class ControllerViewUser {
     @GetMapping("/leads")
     public String leads(Model model) {
         model.addAttribute("listaLeads",leadContactoImp.findAll());
-        model.addAttribute("usuario",new UserDto());
+        model.addAttribute("listaAsesores",userServiceImp.findByRole("ROLE_ASESOR"));
+        model.addAttribute("lead",new Contacto());
         return "leads";
     }
+
+    @PostMapping("/leads")
+    public String registrarLead(@ModelAttribute Contacto contacto) {
+        contactoServiceImp.save(contacto);
+        return "redirect:/user/leads?success";
+    }
+
 
 
     @GetMapping("/perfil")
@@ -79,7 +94,6 @@ public class ControllerViewUser {
 
     @GetMapping("/admin")
     public String registerForm(Model model){
-
         model.addAttribute("listaUsuarios", userServiceImp.findAll());
         model.addAttribute("usuario", new UserDto());
         model.addAttribute("listaAuthorities", authorityRepository.findAll());

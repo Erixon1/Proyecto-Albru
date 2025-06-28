@@ -62,5 +62,10 @@ public class UserServiceImp implements UserService {
         userRepository.deleteById(dni);
     }
 
+    @Override
+    public List<UserDto> findByRole(String role) {
+        List<User> result = userRepository.findByAuthority_Authority(role);
+        return result.stream().map(user -> userMapper.toDto(user)).toList();
+    }
 
 }
