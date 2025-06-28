@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/css/inicio.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/empresa.css">
+    
 </head>
 
 <body>
@@ -33,13 +35,20 @@
             <main class="grid-item content">
                 <div class="main-conteiner">
                     <div class="first-item-main">
-                        <h1 class="title-main">Empresas</h1>
+                        <h1 class="title-main">Gestión de Empresas y Planes</h1>
                         <div class="btn-content">
-                            <button type="button" class="btn btn-primary btn-create-users" id="openModalBtn">+ Nueva
-                                Empresa</button>
+                            <button type="button" class="btn btn-primary btn-create-users" id="openModalBtn">
+                                    <i class="bi bi-building-add"></i> Nueva Empresa
+                                </button>
+                                <button type="button" class="btn btn-primary btn-create-users" id="openPlanModalBtn">
+                                    <i class="bi bi-journal-plus"></i> Nuevo Plan
+                                </button>
                         </div>
                     </div>
+
+                    <!-- Lista Empresas -->
                     <div class="second-item-main">
+                        <h2 class="section-title">Listado de Empresas</h2>
                         <table class="table">
                             <thead class="table-header">
                             <tr>
@@ -65,13 +74,49 @@
                                                 th:data-empresa-nombre="${empresa.nombreEmpresa1}"
                                                 onclick="openDeleteModal(this.getAttribute('data-empresa-id'), this.getAttribute('data-empresa-nombre'))">
                                             <i class="bi bi-trash"></i> Eliminar
-                                        </button>
+                                        </button>                                    
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+                    <!-- Lista planes -->
+                    <div class="section-separator"></div>
+
+                        <div class="second-item-main">
+                            <h2 class="section-title">Listado General de Planes</h2>
+                            <table class="table" id="plansTable"> <thead class="table-header">
+                                    <tr>
+                                        <th class="column-item data-table">ID Plan</th>
+                                        <th class="column-item data-table">Empresa</th>
+                                        <th class="column-item data-table">Tipo de Plan</th>
+                                        <th class="column-item data-table">Precio</th>
+                                        <th class="column-item data-table">Descripción</th>
+                                        <th class="column-item data-table">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body">                                    
+                                        <td class="data-table">
+                                            <div class="buttons-container">
+                                                <button class="btn-actions btn-edit"
+                                                th:data-empresa-id="${empresa.id}"
+                                                th:data-empresa-nombre="${empresa.nombreEmpresa1}"
+                                                onclick="openEditModal(this)">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </button>
+                                                <button class="btn-actions btn-delete"
+                                                th:data-empresa-id="${empresa.id}"
+                                                th:data-empresa-nombre="${empresa.nombreEmpresa1}"
+                                                onclick="openDeleteModal(this.getAttribute('data-empresa-id'), this.getAttribute('data-empresa-nombre'))">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>  
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>                    
                 </div>
             </main>
         </div>

@@ -227,6 +227,7 @@ function detectActiveMenu() {
         '/user/asistenciaSeguimiento': 'menu-asistenciaSeguimiento',
         '/user/actividades': 'menu-actividades',
         '/user/perfil': 'menu-perfil',
+        '/user/empresas': 'menu-empresas',
         '/user/admin': 'menu-crear-usuario',
         '/user/ayudaAdmin': 'ayudaAdmin',
         '/user/ayudaAsesor': 'ayudaAsesor',
@@ -249,6 +250,8 @@ function detectActiveMenu() {
         setActiveMenu('menu-actividades');
     } else if (path.startsWith('/user/perfil')) {
         setActiveMenu('menu-perfil');
+    } else if (path.startsWith('/user/empresas')) {
+        setActiveMenu('menu-empresas');
     } else if (path.startsWith('/user/admin')) {
         setActiveMenu('menu-crear-usuario');
     } else if (path.startsWith('/user/ayudaAdmin')) {
