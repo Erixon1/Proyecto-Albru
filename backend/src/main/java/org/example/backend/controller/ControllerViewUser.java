@@ -3,14 +3,12 @@ package org.example.backend.controller;
 
 import org.example.backend.dto.UserDto;
 import org.example.backend.entity.Contacto;
-import org.example.backend.entity.User;
+import org.example.backend.entity.Empresa;
 import org.example.backend.repository.AuthorityRepository;
 import org.example.backend.repository.ContactoRepository;
+import org.example.backend.repository.EmpresaRepository;
 import org.example.backend.repository.LeadRepository;
-import org.example.backend.service.ContactoServiceImp;
-import org.example.backend.service.LeadContactoImp;
-import org.example.backend.service.UserService;
-import org.example.backend.service.UserServiceImp;
+import org.example.backend.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +27,16 @@ public class ControllerViewUser {
     private final LeadContactoImp leadContactoImp;
     private final ContactoRepository contactoRepository;
     private final ContactoServiceImp contactoServiceImp;
+    private final EmpresaRepository empresaRepository;
 
-    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp) {
+    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp, EmpresaRepository empresaRepository) {
         this.userServiceImp = userServiceImp;
         this.authorityRepository = authorityRepository;
         this.leadRepository = leadRepository;
         this.leadContactoImp = leadContactoImp;
         this.contactoRepository = contactoRepository;
         this.contactoServiceImp = contactoServiceImp;
+        this.empresaRepository = empresaRepository;
     }
 
 
@@ -62,6 +62,45 @@ public class ControllerViewUser {
         return "redirect:/user/leads?success";
     }
 
+
+    @GetMapping("/empresas")
+    public String empresas(Model model){
+        model.addAttribute("listaEmpresas", empresaRepository.findAll());
+        model.addAttribute("empresa",new Empresa());
+        return "empresas";
+    }
+
+    @PostMapping("/empresas")
+    public String agregarEmpresa(@ModelAttribute Empresa empresa){
+        empresaRepository.save(empresa);
+        return "redirect:/user/empresas?success";
+    }
+
+    @PostMapping("/empresas/delete/{id}")
+    public String eliminarEmpresa(@PathVariable("id") Integer id) {
+        empresaRepository.deleteById(id);
+        return "redirect:/user/empresas?deleted=success";
+    }
+
+    @GetMapping("/empresas/editar/{id}")
+    public String editarEmpresa(@PathVariable("id") Integer id, Model model) {
+        Empresa empresa = empresaRepository.findById(id).orElse(null);
+        model.addAttribute("empresa", empresa);
+        model.addAttribute("listaEmpresas", empresaRepository.findAll());
+        return "empresas";
+    }
+
+    @PostMapping("/empresas/update")
+    public String actualizarEmpresa(@ModelAttribute("empresa") Empresa empresaActualizada) {
+        Empresa empresaExistente = empresaRepository.findById(empresaActualizada.getId()).orElse(null);
+
+        if (empresaExistente != null) {
+            empresaExistente.setNombreEmpresa1(empresaActualizada.getNombreEmpresa1());
+            empresaRepository.save(empresaExistente);
+        }
+
+        return "redirect:/user/empresas?success";
+    }
 
 
     @GetMapping("/perfil")
@@ -159,5 +198,7 @@ public class ControllerViewUser {
 
         return "redirect:/user/admin";
     }
+
+
 
 }
