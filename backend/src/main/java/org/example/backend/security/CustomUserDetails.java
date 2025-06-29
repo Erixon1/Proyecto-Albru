@@ -17,6 +17,9 @@ public class CustomUserDetails implements UserDetails {
         this.usuario = usuario;
     }
 
+    public User getUser() {
+        return usuario;
+    }
 
     public String getName() {
         return usuario.getNombres();

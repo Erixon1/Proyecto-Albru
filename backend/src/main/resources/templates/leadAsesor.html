@@ -42,6 +42,7 @@
                     <table class="table">
                         <thead class="table-header">
                         <tr>
+                            <th class="column-item data-table">ID Contacto</th>
                             <th class="column-item data-table">Numero</th>
                             <th class="column-item data-table">Numero alternativo</th>
                             <th class="column-item data-table">Fecha contacto</th>
@@ -50,15 +51,20 @@
                         </tr>
                         </thead>
                         <tbody class="table-body">
-                        <tr th:each="lead : ${listaLeads}">
-                            <td th:text="${lead.celular}"></td>
-                            <td th:text="${lead.celularAlt}"></td>
-                            <td th:text="${lead.fecha}"></td>
-                            <td th:text="${lead.estado}"></td>
+                        <tr th:each="contacto : ${listaContacto}">
+                            <!-- ID del contacto -->
+                            <td th:text="${contacto.id}"></td>
+                            <!-- Número del lead relacionado -->
+                            <td th:text="${contacto.lead?.celular ?: 'N/A'}"></td>
+                            <!-- Número alternativo del lead relacionado -->
+                            <td th:text="${contacto.lead?.celularAlt ?: 'N/A'}"></td>
+                            <!-- Fecha contacto del contacto actual -->
+                            <td th:text="${contacto.fechaContacto}"></td>
+                            <!-- Estado del contacto actual -->
+                            <td th:text="${contacto.estado}"></td>
                             <td class="data-table">
                                 <div class="buttons-container">
-                                    <button class="btn-actions btn-edit" th:data-lead-celular="${lead.celular}"
-                                            th:data-lead-celular-alt="${lead.celularAlt}">
+                                    <button class="btn-actions btn-edit" th:data-lead-id="${contacto.id}">
                                         <i class="bi bi-pencil-square"></i> Atender
                                     </button>
                                 </div>

@@ -2,18 +2,24 @@ package org.example.backend.controller;
 
 
 import org.example.backend.dto.UserDto;
-import org.example.backend.entity.Contacto;
-import org.example.backend.entity.Empresa;
-import org.example.backend.entity.EmpresaPlan;
+import org.example.backend.entity.*;
 import org.example.backend.repository.*;
+import org.example.backend.security.CustomUserDetails;
+import org.example.backend.security.CustomUserDetailsService;
 import org.example.backend.service.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -27,8 +33,9 @@ public class ControllerViewUser {
     private final ContactoServiceImp contactoServiceImp;
     private final EmpresaRepository empresaRepository;
     private final EmpresaPlanRepository empresaPlanRepository;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp, EmpresaRepository empresaRepository, EmpresaPlanRepository empresaPlanRepository) {
+    public ControllerViewUser(UserServiceImp userServiceImp, AuthorityRepository authorityRepository, LeadRepository leadRepository, LeadContactoImp leadContactoImp, ContactoRepository contactoRepository, ContactoServiceImp contactoServiceImp, EmpresaRepository empresaRepository, EmpresaPlanRepository empresaPlanRepository, CustomUserDetailsService customUserDetailsService) {
         this.userServiceImp = userServiceImp;
         this.authorityRepository = authorityRepository;
         this.leadRepository = leadRepository;
@@ -37,6 +44,7 @@ public class ControllerViewUser {
         this.contactoServiceImp = contactoServiceImp;
         this.empresaRepository = empresaRepository;
         this.empresaPlanRepository = empresaPlanRepository;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
 
@@ -51,24 +59,60 @@ public class ControllerViewUser {
 
     @GetMapping("/leads")
     public String leads(Model model) {
-        model.addAttribute("listaLeads",leadContactoImp.findAll());
+        model.addAttribute("listaLeads",leadContactoImp.findByEstadoNot("ASIGNADO"));
         model.addAttribute("listaAsesores",userServiceImp.findByRole("ROLE_ASESOR"));
-        model.addAttribute("lead",new Contacto());
+        model.addAttribute("contacto",new Contacto());
         return "leads";
     }
 
     @GetMapping("/leadAsesor")
     public String leadAsesor(Model model) {
-        model.addAttribute("listaLeads",leadContactoImp.findAll());
-        model.addAttribute("listaAsesores",userServiceImp.findByRole("ROLE_ASESOR"));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth.getPrincipal() instanceof CustomUserDetails userDetails) {
+            User user = userDetails.getUser();
+            model.addAttribute("listaContacto", contactoServiceImp.findByAsesorDni(user));
+        } else {
+            model.addAttribute("listaContacto", List.of());
+        }
         model.addAttribute("lead",new Contacto());
         return "leadAsesor";
     }
 
     @PostMapping("/leads")
-    public String registrarLead(@ModelAttribute Contacto contacto) {
-        contactoServiceImp.save(contacto);
-        return "redirect:/user/leads?success";
+    public String registrarLead(@ModelAttribute Contacto contacto,
+                                @RequestParam(value = "leadId", required = false) Integer leadId) {
+
+        if (leadId != null) {
+            // Buscar el LeadContacto por ID usando el repositorio
+            Optional<LeadContacto> leadContactoOpt = leadRepository.findById(leadId);
+            if (leadContactoOpt.isPresent()) {
+                LeadContacto leadContacto = leadContactoOpt.get();
+
+                // Asignar la referencia del lead al contacto
+                contacto.setLead(leadContacto);
+
+                // Establecer otros campos por defecto
+                contacto.setFechaContacto(LocalDate.now());
+                contacto.setEstado("SIN ATENDER");
+
+                // Guardar el contacto
+                contactoServiceImp.save(contacto);
+
+                // Cambiar el estado del lead para marcarlo como "asignado" en lugar de eliminarlo
+                leadContacto.setEstado("ASIGNADO");
+                leadRepository.save(leadContacto);
+
+                return "redirect:/user/leads?success";
+
+            } else {
+                System.err.println("Lead no encontrado con ID: " + leadId);
+                return "redirect:/user/leads?error=leadNotFound";
+            }
+        } else {
+            System.err.println("No se recibió leadId en el formulario");
+            return "redirect:/user/leads?error=noLeadId";
+        }
     }
 
 
