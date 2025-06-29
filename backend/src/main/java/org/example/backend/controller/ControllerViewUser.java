@@ -48,12 +48,21 @@ public class ControllerViewUser {
     public String registro() {
         return "registro";
     }
+
     @GetMapping("/leads")
     public String leads(Model model) {
         model.addAttribute("listaLeads",leadContactoImp.findAll());
         model.addAttribute("listaAsesores",userServiceImp.findByRole("ROLE_ASESOR"));
         model.addAttribute("lead",new Contacto());
         return "leads";
+    }
+
+    @GetMapping("/leadAsesor")
+    public String leadAsesor(Model model) {
+        model.addAttribute("listaLeads",leadContactoImp.findAll());
+        model.addAttribute("listaAsesores",userServiceImp.findByRole("ROLE_ASESOR"));
+        model.addAttribute("lead",new Contacto());
+        return "leadAsesor";
     }
 
     @PostMapping("/leads")

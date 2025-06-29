@@ -96,3 +96,79 @@ window.addEventListener('keydown', function(event) {
         closeEditModal();        
     }
 });
+
+
+//FORMULARIOS VALIDACION
+
+const form = document.getElementById('create-user-form');
+const nameInput = document.getElementById('name');
+const lastNameInput = document.getElementById('last-name');
+const nameError = document.getElementById('name-error');
+const lastNameError = document.getElementById('last-name-error');
+const dniInput = document.getElementById('dni');
+const dniError = document.getElementById('dni-error');
+const formError = document.getElementById('form-error');
+
+function validarSoloLetras(texto) {
+    return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(texto.trim());
+}
+
+function validarSoloNumeros(texto) {
+    return /^\d+$/.test(texto.trim());
+}
+
+function validarDNI() {
+    const valor = dniInput.value.trim();
+    if (!validarSoloNumeros(valor) || valor.length !== 8) {
+        dniError.textContent = 'Ingresa un DNI válido de 8 dígitos';
+        dniInput.classList.add('input-error');
+        return false;
+    } else {
+        dniError.textContent = '';
+        dniInput.classList.remove('input-error');
+        return true;
+    }
+}
+
+function validarCampo(input, errorSpan, mensaje) {
+    const valor = input.value;
+    if (!validarSoloLetras(valor)) {
+        errorSpan.textContent = mensaje;
+        input.classList.add('input-error');
+        return false;
+    } else {
+        errorSpan.textContent = '';
+        input.classList.remove('input-error');
+        return true;
+    }
+}
+
+// Validación en tiempo real
+nameInput.addEventListener('input', () => {
+    validarCampo(nameInput, nameError, '¡Por favor ingrese solo letras!');
+});
+lastNameInput.addEventListener('input', () => {
+    validarCampo(lastNameInput, lastNameError, '¡Por favor ingrese solo letras!');
+});
+dniInput.addEventListener('input', validarDNI);
+
+// Validación antes de enviar
+form.addEventListener('submit', function (event) {
+    const nombreValido = validarCampo(nameInput, nameError, '¡Por favor ingrese solo letras!');
+    const apellidoValido = validarCampo(lastNameInput, lastNameError, '¡Por favor ingrese solo letras!');
+    const dniValido = validarDNI();
+
+    const formularioValido = nombreValido && apellidoValido && dniValido;
+
+    if (!nombreValido || !apellidoValido) {
+        event.preventDefault(); // Bloquea envío
+    }
+
+    if (!formularioValido) {
+        event.preventDefault();
+        formError.style.display = 'block';
+        formError.textContent = 'Algún campo es incorrecto. Por favor, corrige los errores.';
+    } else {
+        formError.style.display = 'none';
+    }
+});

@@ -232,6 +232,7 @@ function detectActiveMenu() {
         '/user/ayudaAdmin': 'ayudaAdmin',
         '/user/ayudaAsesor': 'ayudaAsesor',
         '/user/leads': 'menu-leads',
+        '/user/leadAsesor': 'leadAsesor',
 
         '/login': null // Limpiar al cerrar sesión
     };

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEADS</title>
+
+    <!-- ICONOS & FUENTES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!-- ICONO Y ESTILOS PERSONALIZADOS -->
+    <link rel="icon" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/lead.css">
+    <link rel="stylesheet" href="/css/leadAsesor.css">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Menú lateral -->
+        <div th:replace="~{fragments/navbar :: sidebar}"></div>
+
+        <!-- Botón para toggle del menú -->
+        <div th:replace="~{fragments/navbar :: menuToggle}"></div>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="main-content">
+            <main class="grid-item content">
+                <div class="main-conteiner">
+                    <div class="first-item-main">
+                        <h1 class="title-main">Atención de Leads</h1>
+                    </div>
+                </div>
+                <!-- Tabla de contenidos -->
+                <div class="second-item-main">
+                    <table class="table">
+                        <thead class="table-header">
+                        <tr>
+                            <th class="column-item data-table">Numero</th>
+                            <th class="column-item data-table">Numero alternativo</th>
+                            <th class="column-item data-table">Fecha contacto</th>
+                            <th class="column-item data-table">Estado</th>
+                            <th class="column-item data-table">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-body">
+                        <tr th:each="lead : ${listaLeads}">
+                            <td th:text="${lead.celular}"></td>
+                            <td th:text="${lead.celularAlt}"></td>
+                            <td th:text="${lead.fecha}"></td>
+                            <td th:text="${lead.estado}"></td>
+                            <td class="data-table">
+                                <div class="buttons-container">
+                                    <button class="btn-actions btn-edit" th:data-lead-celular="${lead.celular}"
+                                            th:data-lead-celular-alt="${lead.celularAlt}">
+                                        <i class="bi bi-pencil-square"></i> Atender
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+            </div>
+        </div>
+
+    <!-- MODAL CREATE -->
+    <div class="custom-modal" id="customModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Atender Lead</h2>
+            <form class="form-modal" id="create-user-form" th:action="@{/user/leads}" th:object="${lead}"
+                method="POST">
+                <div class="form-group">
+                    <label for="user-type">Asesor</label>
+                    <select id="user-type" th:field="*{asesorDni}" required>
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <option th:each="asesor : ${listaAsesores}" th:value="${asesor.dni}"
+                                th:text="${asesor.nombres}">
+                        </option>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <div class="form-group form-button">
+                        <button type="submit" class="btn-submit" id="submitButton">Asignar lead</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL ATENDER LEAD -->
+<div class="custom-modal-atender" id="modalAtenderLead">
+    <div class="modal-overlay" id="overlayAtenderLead"></div>
+    <div class="modal-content-atender">
+        <span class="close-modal" id="closeAtenderLead">&times;</span>
+        <h2 class="modal-title">Atender Lead</h2>
+
+        <!-- DATOS DEL LEAD -->
+        <div class="form-section">
+            <h3>Datos del Lead</h3>
+            <p><strong>Número:</strong> <span id="leadNumero"></span></p>
+            <p><strong>Número alternativo:</strong> <span id="leadAltNumero"></span></p>
+            <p><strong>Fecha de contacto:</strong> <span id="leadFecha"></span></p>
+            <p><strong>Estado:</strong> <span id="leadEstado"></span></p>
+        </div>
+
+        <!-- FORMULARIO DE ATENCIÓN -->
+        <form id="formAtencionLead" method="POST" action="/lead/atender">
+            <div class="form-group">
+                <label for="dniCliente">DNI Cliente</label>
+                <input type="text" id="dniCliente" name="dniCliente" required pattern="\d{8}" maxlength="8">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="leadId">ID Lead</label>
+                <input type="text" id="leadId" name="leadId" required pattern="\\d+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="planId">ID Plan</label>
+                <input type="text" id="planId" name="planId" required pattern="\\d+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="dniAsesor">DNI Asesor</label>
+                <input type="text" id="dniAsesor" name="dniAsesor" required pattern="\\d+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <select id="estado" name="estado" required>
+                    <option value="">Seleccione</option>
+                    <option value="nuevo">Nuevo</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="contactado">Contactado</option>
+                    <option value="no interesado">No interesado</option>
+                </select>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaContacto">Fecha Contacto</label>
+                <input type="datetime-local" id="fechaContacto" name="fechaContacto" required>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="contactoId">ID Contacto</label>
+                <input type="text" id="contactoId" name="contactoId" required pattern="\\d+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="subDireccion">Sub Dirección</label>
+                <input type="text" id="subDireccion" name="subDireccion" required pattern="[a-zA-Z0-9 ]+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="nota">Nota</label>
+                <textarea id="nota" name="nota" required></textarea>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="ubicacionId">ID Ubicación</label>
+                <input type="text" id="ubicacionId" name="ubicacionId" required pattern="\\d+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="lineaDireccion">Línea de Dirección</label>
+                <input type="text" id="lineaDireccion" name="lineaDireccion" required pattern="[a-zA-Z0-9 ]+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="departamento">Departamento</label>
+                <input type="text" id="departamento" name="departamento" required pattern="[a-zA-Z\s]+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="provincia">Provincia</label>
+                <input type="text" id="provincia" name="provincia" required pattern="[a-zA-Z ]+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="distrito">Distrito</label>
+                <input type="text" id="distrito" name="distrito" required pattern="[a-zA-Z ]+">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group form-button">
+                <button type="submit" class="btn-submit">Enviar</button>
+            </div>
+
+            <div id="form-error-msg" class="form-error-msg"></div>
+        </form>
+    </div>
+</div>
+    
+    </div>
+    <script src="/js/asistenciaYsidebar.js"></script>
+    <script src="/js/leadAsesor.js"></script>
+</body>
+
+</html>
