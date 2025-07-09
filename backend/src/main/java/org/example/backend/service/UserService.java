@@ -13,4 +13,6 @@ public interface UserService {
     void save(UserDto user);
 
     void deleteByDni(String dni);
+
+    List<UserDto> findByRole(String role);
 }

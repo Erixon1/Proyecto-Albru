@@ -2,6 +2,7 @@ package org.example.backend.service;
 
 import org.example.backend.entity.Contacto;
 import org.example.backend.entity.LeadContacto;
+import org.example.backend.entity.User;
 import org.example.backend.repository.ContactoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,15 @@ public class ContactoServiceImp implements ContactoService {
     @Override
     public void save(Contacto contacto) {
         contactoRepository.save(contacto);
+    }
+
+    @Override
+    public List<Contacto> findByAsesorDni(User asesor) {
+        List<Contacto> lista = contactoRepository.findContactoByAsesorDni(asesor);
+        return lista;
+    }
+
+    public void flush() {
+        contactoRepository.flush();
     }
 }

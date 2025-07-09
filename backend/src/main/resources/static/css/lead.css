@@ -1,0 +1,236 @@
+html, body {
+    font-family: sans-serif;
+    font-size: 1rem;
+    height: 100%;
+    color: #000;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    grid-template-rows: 80px 1fr;
+    grid-template-areas:
+        "aside navbar"
+        "aside main";
+    height: 100dvh;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.content {
+    background-color: transparent;
+    grid-area: main;
+    color: #fff;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px auto;
+        grid-template-areas:
+            "navbar"
+            "main";
+    }
+}
+
+/* Estilos principales */
+.first-item-main {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 30px;
+}
+
+.title-main {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1e43b8;
+}
+
+.btn-create-leads {
+    outline: none;
+    border: none;
+    background-color: #1e43b8;
+    color: #fff;
+    font-weight: 600;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-create-leads:hover {
+    background-color: #153395;
+}
+
+.second-item-main {
+    margin: 20px 15px 0;
+    text-align: left;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.table-header th {
+    background-color: #1e43b8;
+    color: #fff;
+    padding: 10px;
+}
+
+.column-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table td {
+    text-align: center;
+}
+
+.data-table {
+    padding: 10px;
+    overflow: hidden;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-actions {
+    border: none;
+    background-color: transparent;
+    font-size: .9rem;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-edit {
+    background-color: #4fb822;
+}
+
+.btn-delete {
+    background-color: #f44;
+}
+
+.btn-actions:hover {
+    opacity: 0.8;
+}
+
+/* MODALES */
+
+.modal,
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal.show,
+.custom-modal.show {
+    display: flex !important;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10000;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Formulario en modal */
+.form-modal {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #1e43b8;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #1e43b8;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #153395;
+}
+
+.form-button {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.btn-submit {
+    background-color: #1e43b8;
+    color: #fff;
+    padding: 15px 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #153395;
+}

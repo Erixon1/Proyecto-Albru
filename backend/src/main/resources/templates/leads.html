@@ -15,7 +15,7 @@
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="/css/inicio.css">
     <link rel="stylesheet" href="/css/form.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/lead.css">
 
 </head>
 
@@ -30,60 +30,79 @@
 
         <!-- CONTENIDO PRINCIPAL -->
         <div class="main-content">
-            <div class="container">
-                <main class="grid-item content">
-                    <div class="main-conteiner">
-                        <div class="first-item-main">
-                            <h1 class="title-main">Leads</h1>
-                            <div class="btn-content">
-                                <button type="button" class="btn btn-primary btn-create-leads" id="openModalBtn">+
-                                    Agregar
-                                    Leads</button>
-                            </div>
+            <main class="grid-item content">
+                <div class="main-conteiner">
+                    <div class="first-item-main">
+                        <h1 class="title-main">Leads</h1>
+                        <div class="btn-content">
+                            <button type="button" class="btn btn-primary btn-create-leads" id="openModalBtn">+
+                                Agregar
+                                Leads</button>
                         </div>
                     </div>
-                    <!-- Tabla de contenidos -->
-                    <div class="second-item-main">
-                        <table class="table">
-                            <thead class="table-header">
-                                <tr>
-                                    <th class="column-item data-table">Numero</th>
-                                    <th class="column-item data-table">Fecha contacto</th>
-                                    <th class="column-item data-table">Estado</th>
-                                    <th class="column-item data-table">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-body">
-                                <tr th:each="lead : ${listaLeads}">
-                                    <td th:text="${lead.celular}"></td>
-                                    <td th:text="${lead.fecha}"></td>
-                                    <td th:text="${lead.estado}"></td>
-                                    <td class="data-table">
-                                        <div class="buttons-container">
-                                            <button class="btn-actions btn-edit" th:data-user-dni="${usuario.dni}"
-                                                th:data-user-nombres="${usuario.nombres}"
-                                                th:data-user-apellidos="${usuario.apellidos}"
-                                                th:data-user-genero="${usuario.genero}"
-                                                th:data-user-role-id="${usuario.authorityId}"
-                                                onclick="openEditModal(this)">
-
-                                                <i class="bi bi-pencil-square"></i> Asignar
-                                                </button>
-                                                <button class="btn-actions btn-delete" th:data-user-id="${lead.id}"
-                                                    th:data-user-name="${usuario.nombres + ' ' + usuario.apellidos}"
-                                                    onclick="openDeleteModal(this.getAttribute('data-user-id'), this.getAttribute('data-user-name'))">
-                                                    <i class="bi bi-trash"></i> Eliminar
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </main>
+                </div>
+                <!-- Tabla de contenidos -->
+                <div class="second-item-main">
+                    <table class="table">
+                        <thead class="table-header">
+                        <tr>
+                            <th class="column-item data-table">Numero</th>
+                            <th class="column-item data-table">Numero alternativo</th>
+                            <th class="column-item data-table">Fecha contacto</th>
+                            <th class="column-item data-table">Estado</th>
+                            <th class="column-item data-table">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-body">
+                        <tr th:each="lead : ${listaLeads}">
+                            <td th:text="${lead.celular}"></td>
+                            <td th:text="${lead.celularAlt}"></td>
+                            <td th:text="${lead.fecha}"></td>
+                            <td th:text="${lead.estado}"></td>
+                            <td class="data-table">
+                                <div class="buttons-container">
+                                    <!-- IMPORTANTE: Asegúrate de que data-lead-id tenga el valor correcto -->
+                                    <button class="btn-actions btn-edit btn-asignar"
+                                            th:data-lead-id="${lead.id}">
+                                        <i class="bi bi-pencil-square"></i> Asignar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
             </div>
         </div>
+
+    <!-- MODAL CREATE -->
+    <div class="custom-modal" id="customModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Asignar Lead</h2>
+            <form class="form-modal" id="create-user-form" th:action="@{/user/leads}" th:object="${contacto}" method="POST">
+                <!-- Campo  hidden para el leadId - Usar name simple, no th:field -->
+                <input type="hidden" id="leadId" name="leadId">
+
+                <div class="form-group">
+                    <label for="user-type">Asesor</label>
+                    <select id="user-type" th:field="*{asesorDni}" required>
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <option th:each="asesor : ${listaAsesores}" th:value="${asesor.dni}"
+                                th:text="${asesor.nombres + ' ' + asesor.apellidos}">
+                        </option>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <div class="form-group form-button">
+                        <button type="submit" class="btn-submit" id="submitButton">Asignar lead</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
         <!-- Modal para importar Excel -->
         <div class="modal" id="importModal" style="display:none; position: fixed; top: 0; left: 0;
@@ -102,18 +121,7 @@
 
     </div>
     <script src="/js/asistenciaYsidebar.js"></script>
-    <script>
-            const modal = document.getElementById("importModal");
-            const openModalBtn = document.getElementById("openModalBtn");
-
-            openModalBtn.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-
-            function cerrarModal() {
-            modal.style.display = "none";
-        }
-    </script>
+    <script src="/js/lead.js"></script>
 </body>
 
 </html>

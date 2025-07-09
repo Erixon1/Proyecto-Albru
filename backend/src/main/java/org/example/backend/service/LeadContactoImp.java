@@ -99,4 +99,8 @@ public class LeadContactoImp implements LeadService {
             System.out.println("Se recibió archivo para importar leads.");
         }
     }
+
+    public List<LeadContacto> findByEstadoNot(String estado){
+        return leadRepository.findByEstadoNot(estado);
+    }
 }

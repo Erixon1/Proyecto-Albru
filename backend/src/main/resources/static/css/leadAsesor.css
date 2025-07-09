@@ -1,0 +1,133 @@
+.custom-modal-atender {
+    display: none;
+    position: fixed;
+    inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; */
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.custom-modal-atender.show {
+    display: flex !important;
+}
+
+.modal-content-atender {
+    background-color: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Título del modal */
+.modal-content-atender .modal-title {
+    text-align: center;
+    color: #1e43b8;
+    margin-bottom: 20px;
+}
+
+/* Botón cerrar (X) */
+#closeAtenderLead {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Sección de datos del lead */
+.form-section {
+    margin-bottom: 25px;
+}
+
+.form-section h3 {
+    margin-bottom: 10px;
+    color: #1e43b8;
+}
+
+.form-section p {
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+/* Formulario */
+#formAtencionLead {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #1e43b8;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #1e43b8;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #153395;
+}
+
+/* Botón enviar */
+.form-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-button .btn-submit {
+    background-color: #1e43b8;
+    color: #fff;
+    padding: 15px 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.form-button .btn-submit:hover {
+    background-color: #153395;
+}
+
+/* Estilo para el texto de error */
+.invalid {
+    border-color: red !important;
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-error-msg {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
