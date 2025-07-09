@@ -125,6 +125,11 @@ public class ControllerViewUser {
         return "empresas";
     }
 
+    @PostMapping("/empresas")
+    public String agregarEmpresa(@ModelAttribute Empresa empresa){
+        empresaRepository.save(empresa);
+        return "redirect:/user/empresas?success";
+    }
     // Método para crear nuevo plan
     @PostMapping("/planes")
     public String agregarPlan(@ModelAttribute EmpresaPlan empresaPlan){
