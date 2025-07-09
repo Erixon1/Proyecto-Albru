@@ -164,7 +164,7 @@
                 <div class="left-panel">
                     <div class="employee-profile">
                         <div class="profile-pic">
-                            <img src="" alt="USER" />
+                            <img th:src="@{/images/foto-perfil.png}" alt="USER" />
                         </div>
                         <h2 sec:authentication="principal.fullName"></h2>
                         <p th:text="${#authentication.principal.getRoleName()}" class="user-rol"></p>

@@ -21,13 +21,6 @@
                     </a>
                 </li>
 
-                <!-- Registro: solo para ROLE_ASESOR -->
-                <li style="--bg: #2196f3" id="menu-registro" sec:authorize="hasRole('ASESOR')">
-                    <a th:href="@{/user/registro}">
-                        <div class="icon"><i class='bx bx-customize'></i></div>
-                        <div class="text">Registro</div>
-                    </a>
-                </li>
 
                 <!-- Crear usuario: solo para ROLE_ADMIN -->
                 <li style="--bg: #2196f3" id="menu-crear-usuario" sec:authorize="hasRole('ADMIN')">

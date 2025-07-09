@@ -113,8 +113,8 @@
         <!-- DATOS DEL LEAD -->
         <div class="form-section">
             <h3>Datos del Lead</h3>
-            <p><strong>Número:</strong> <span id="leadNumero"></span></p>
-            <p><strong>Número alternativo:</strong> <span id="leadAltNumero"></span></p>
+            <p><strong></strong> <span id="leadNumero"></span></p>
+            <p><strong></strong> <span id="leadAltNumero"></span></p>
             <p><strong>Fecha de contacto:</strong> <span id="leadFecha"></span></p>
             <p><strong>Estado:</strong> <span id="leadEstado"></span></p>
         </div>
@@ -127,23 +127,14 @@
                 <small class="error-msg"></small>
             </div>
 
-            <div class="form-group">
-                <label for="leadId">ID Lead</label>
-                <input type="text" id="leadId" name="leadId" required pattern="\\d+">
-                <small class="error-msg"></small>
-            </div>
 
             <div class="form-group">
                 <label for="planId">ID Plan</label>
-                <input type="text" id="planId" name="planId" required pattern="\\d+">
+                <input type="text" id="planId" name="planId" required pattern="\d+">
                 <small class="error-msg"></small>
             </div>
 
-            <div class="form-group">
-                <label for="dniAsesor">DNI Asesor</label>
-                <input type="text" id="dniAsesor" name="dniAsesor" required pattern="\\d+">
-                <small class="error-msg"></small>
-            </div>
+
 
             <div class="form-group">
                 <label for="estado">Estado</label>
@@ -164,12 +155,6 @@
             </div>
 
             <div class="form-group">
-                <label for="contactoId">ID Contacto</label>
-                <input type="text" id="contactoId" name="contactoId" required pattern="\\d+">
-                <small class="error-msg"></small>
-            </div>
-
-            <div class="form-group">
                 <label for="subDireccion">Sub Dirección</label>
                 <input type="text" id="subDireccion" name="subDireccion" required pattern="[a-zA-Z0-9 ]+">
                 <small class="error-msg"></small>
@@ -178,12 +163,6 @@
             <div class="form-group">
                 <label for="nota">Nota</label>
                 <textarea id="nota" name="nota" required></textarea>
-                <small class="error-msg"></small>
-            </div>
-
-            <div class="form-group">
-                <label for="ubicacionId">ID Ubicación</label>
-                <input type="text" id="ubicacionId" name="ubicacionId" required pattern="\\d+">
                 <small class="error-msg"></small>
             </div>
 
