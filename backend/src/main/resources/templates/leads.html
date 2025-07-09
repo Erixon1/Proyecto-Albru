@@ -83,7 +83,7 @@
             <span class="close-modal" id="closeModalBtn">&times;</span>
             <h2 class="modal-title" id="modalTitle">Asignar Lead</h2>
             <form class="form-modal" id="create-user-form" th:action="@{/user/leads}" th:object="${contacto}" method="POST">
-                <!-- Campo hidden para el leadId - Usar name simple, no th:field -->
+                <!-- Campo  hidden para el leadId - Usar name simple, no th:field -->
                 <input type="hidden" id="leadId" name="leadId">
 
                 <div class="form-group">
