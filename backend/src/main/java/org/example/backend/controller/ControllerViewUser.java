@@ -194,7 +194,6 @@ public class ControllerViewUser {
     public String actividades() {
         return "actividades";
     }
-
     @GetMapping("/detallesAdmin")
     public String detallesAdmin() {
         return "detallesAdmin";
